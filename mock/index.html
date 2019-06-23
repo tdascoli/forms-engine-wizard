@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+
+    <title>nextForms</title>
+
+    <!-- CSS -->
+    <!-- Add Material font (Roboto) and Material icon as needed -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Add Material CSS, replace Bootstrap CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daemonite-material@4.1.1/css/material.min.css">
+
+    <link rel="stylesheet" href="css/nextforms.css" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">nextforms</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">builder <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- content -->
+<div class="container">
+
+  <div class="nextforms">
+
+    <ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
+      <li class="nav-item">
+        <a aria-controls="home" aria-selected="true" class="nav-link active" data-toggle="tab" href="#form-fields" id="home-tab" role="tab">Felder</a>
+      </li>
+      <li class="nav-item">
+        <a aria-controls="profile" aria-selected="false" class="nav-link" data-toggle="tab" href="#form-entries" id="profile-tab" role="tab">Einträge</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="justifiedTabContent">
+      <div aria-labelledby="home-tab" class="tab-pane fade show active" id="form-fields" role="tabpanel">
+
+        <h1>New Form</h1>
+
+        <div class="form-field focused">
+          <div class="form-field__body">
+            <div class="toolbar_field-top px-4 py-3">
+              <i class="material-icons">file_copy</i>
+              <i class="material-icons">delete_outline</i>
+              <i class="material-icons">arrow_upward</i>
+              <i class="material-icons">arrow_downward</i>
+            </div>
+
+            <div class="form-field__content px-4 py-2">
+              <div class="form-group">
+                <div class="floating-label">
+                  <label for="title">Geben Sie hier einen Titel ein.</label>
+                  <input class="form-control" id="title" placeholder="Geben Sie hier einen Titel ein." type="text">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="floating-label">
+                  <label for="title">Einen Hilfetext eingeben.</label>
+                  <input class="form-control" id="title" placeholder="Einen Hilfetext eingeben." type="text">
+                </div>
+              </div>
+
+              <span>Fehlertext</span>
+
+              <div class="form-group">
+                <label for="config">Einschränkung</label>
+                <select class="form-control" id="config">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="toolbar_field-bottom px-4 py-3">
+
+                <i class="material-icons">more_horiz</i>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button class="btn btn-primary" type="button" name="button"><i class="material-icons">add</i> Neues Feld hinzufügen</button>
+          </div>
+        </div>
+
+      </div>
+      <div aria-labelledby="profile-tab" class="tab-pane fade" id="form-entries" role="tabpanel">...</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<!-- Then Material JavaScript on top of Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/daemonite-material@4.1.1/js/material.min.js"></script>
+
+</body>
+</html>

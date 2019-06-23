@@ -1,0 +1,36 @@
+/* todo SASS */
+.nextforms {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.tab-pane {
+
+}
+
+/* form-field */
+/*
+.form-field:hover {
+  background-color: #eee;
+}
+*/
+.form-field.focused .form-field__body {
+  border-top: blue 4px solid;
+  background-color: #eee;
+}
+.form-field__body {
+
+}
+.form-field__content {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+
+}
+.toolbar_field-top,
+.toolbar_field-bottom {
+
+}
+.toolbar_field-bottom {
+  border-top: 1px solid #ccc;
+}
