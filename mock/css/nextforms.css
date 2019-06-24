@@ -1,4 +1,8 @@
 /* todo SASS */
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
 .nextforms {
   padding-top: 10px;
   padding-bottom: 10px;
