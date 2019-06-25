@@ -1,0 +1,52 @@
+<a href="#"
+   data-bind="click: $parent.toggleActive($index()),
+              class: $parent.isActive($index())"
+   class="element list-group-item list-group-item-action flex-column align-items-start">
+  <div class="element--rendered">
+    <div class="d-flex flex-column">
+      <strong data-bind="text: getLabel()"></strong>
+      <span data-bind="text: getHelptext()"></span>
+    </div>
+  </div>
+  <div class="element--edit">
+    <div class="form-group">
+      <div class="form-group">
+        <label for="title">Geben Sie hier einen Titel ein.</label>
+        <input data-bind="textInput: getLabel()" class="form-control" id="title" placeholder="Geben Sie hier einen Titel ein." type="text" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="helptext">Einen Hilfetext eingeben.</label>
+      <input data-bind="value: getHelptext()" class="form-control" id="helptext" placeholder="Einen Hilfetext eingeben." type="text" />
+    </div>
+    <div class="d-flex w-100 justify-content-between form-inline">
+      <div class="form-group">
+        <label for="config">Einschränkungen</label>
+        <select class="custom-select ml-3" id="config">
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input data-bind="checked: getRequired()" value="true" type="checkbox" class="custom-control-input" id="required">
+          <label class="custom-control-label" for="required">Pflichtfeld</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input data-bind="checked: getType() == 'textarea'" value="textarea" type="checkbox" class="custom-control-input" id="textarea">
+          <label class="custom-control-label" for="textarea">Lange Antwort</label>
+        </div>
+      </div>
+
+      <span><i class="material-icons">more_horiz</i></button>
+    </div>
+    <hr />
+    <button type="button" class="btn btn-primary"><i class="material-icons">add</i> Neue Frage hinzufügen</button>
+  </div>
+</a>
