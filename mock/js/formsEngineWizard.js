@@ -12,8 +12,8 @@ $(document).ready(function() {
     self.test = new Text('Frage 1');
     self.test.isRequired();
     self.elements.push(self.test);
-    self.elements.push(new Text('Frage 2'));
 
+    // todo toggle not correctly working
     self.toggleActive = function(id){
         self.active(id);
     };
@@ -23,6 +23,14 @@ $(document).ready(function() {
         return 'active';
       }
     };
+
+    self.add = function(element){
+      self.elements.push(element);
+    };
+
+    self.remove = function(index){
+      self.elements.splice(index,1);
+    };
   };
 
   var FormsEngineWizard = function() {
@@ -30,10 +38,16 @@ $(document).ready(function() {
 
     self.pages = ko.observableArray();
     self.pages.push(new Page());
-    self.pages.push(new Page());
+
+    // todo add "correct" element
+    self.addElement = function(){
+      var page = _.last(self.pages());
+      var element = new Text('Frage X');
+      page.add(element);
+    };
   };
 
-  // load templates
+  // load templates and apply knockout bindings
   (function() {
       var promises = $("script[type='text/html']").map(function(_, script) {
           if(script.src) {
