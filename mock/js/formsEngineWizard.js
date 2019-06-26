@@ -48,11 +48,29 @@ $(document).ready(function() {
     self.pages = ko.observableArray();
     self.pages.push(new Page());
 
+    self.jsonForm = ko.observable();
+
     // todo add "correct" element
     self.addElement = function(){
       var page = _.last(self.pages());
       var element = new Text('Frage X');
       page.add(element);
+    };
+
+    self.generate = function(){
+      var json={'formTitle':new Array(), 'pages':new Array()};
+      var pageIndex=0;
+      _.forEach(self.pages(), function(page) {
+        json.pages[pageIndex]=new Array();
+        _.forEach(page.elements(), function(pageElement){
+          json.pages[pageIndex].push(pageElement.element);
+        });
+        pageIndex++;
+      });
+      var test = ko.toJSON(json);
+
+      console.log(test, json);
+      self.jsonForm(test);
     };
   };
 

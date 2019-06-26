@@ -67,7 +67,7 @@
 <!-- content -->
 <div class="container">
   <div class="tab-content" id="justifiedTabContent">
-    
+
     <div aria-labelledby="questions-tab"
         class="tab-pane fade show active"
         id="questions"
@@ -91,6 +91,9 @@
   <div class="element-action">
     <button data-bind="click: addElement" class="btn btn-float btn-primary my-1 element-action__add" type="button"><i class="material-icons">add</i></button>
   </div>
+
+  <button data-bind="click: generate" type="button">mkForm</button>
+  <input data-bind="value: jsonForm" type="text" />
 </div>
 </body>
 </html>
