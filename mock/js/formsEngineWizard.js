@@ -11,6 +11,10 @@ $(document).ready(function() {
   };
   var Page = function(){
     var self = this;
+    self.pageNumber = function(index){
+      var pageNumber = index + 1;
+      return pageNumber;
+    }
     self.elements = ko.observableArray([]),
                     displayMode = function(element) {
                         return element.element.type() + 'Element';

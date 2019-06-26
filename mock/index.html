@@ -75,21 +75,27 @@
         role="tabpanel"
         class="card mb-3 forms-engine__page">
 
-      <div class="list-group list-group-flush"
-           data-bind="template: { name: 'titleElement', data: formTitle }">
-      </div>
-
-      <div class="forms_engine"
-           data-bind="foreach: pages">
-        <div class="card mb-3 forms-engine__page">
-          <div class="card-header" data-bind="visible: $index()>0">
-            <h5 class="card-title">Abschnitt <span data-bind="text: $index()"></span></h5>
-          </div>
-          <div class="list-group list-group-flush"
-               data-bind="template: { name: displayMode, foreach: elements }">
-          </div>
+      <!-- form title -->
+      <div class="card forms-engine__title">
+        <div class="card-header">
+          <h5 class="card-title">Abschnitt 1</h5>
+        </div>
+        <div class="list-group list-group-flush"
+             data-bind="template: { name: 'titleElement', data: formTitle }">
         </div>
       </div>
+      <!-- pages -->
+      <!-- ko foreach: pages -->
+      <div class="card mb-3 forms-engine__page">
+        <div class="card-header" data-bind="visible: $index()>0">
+          <h5 class="card-title">Abschnitt <span data-bind="text: pageNumber($index())"></span></h5>
+        </div>
+
+        <div class="list-group list-group-flush"
+             data-bind="template: { name: displayMode, foreach: elements }">
+        </div>
+      </div>
+      <!-- /ko -->
     </div>
 
     <div aria-labelledby="answers-tab" class="tab-pane fade" id="answers" role="tabpanel">...</div>
