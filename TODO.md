@@ -1,7 +1,7 @@
 # Technology
 
-* choose which framework to use?
-* use forms-engine abstracts for creating formdefinition
+* ~~choose which framework to use?~~
+* ~~use forms-engine abstracts for creating formdefinition~~
 
 # Design
 
@@ -10,9 +10,13 @@
 # FormDefinition
 
 * Persistence?
-* create example json
+* ~~create example json~~
 * what is more than in formsengine?
 
 # Docs & Example
 
-* create heroku example page
+* ~~create heroku example page~~
+
+# other
+
+* move todos to gh-issues
