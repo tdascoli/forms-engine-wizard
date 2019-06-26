@@ -1,7 +1,5 @@
 <a href="#"
-   data-bind="click: $parent.toggleActive($index()),
-              class: $parent.isActive($index())"
-   class="element list-group-item list-group-item-action flex-column align-items-start">
+   class="element list-group-item list-group-item-action flex-column align-items-start active">
   <div class="element--rendered">
     <div class="d-flex flex-column">
       <strong data-bind="text: element.label"></strong>
@@ -9,44 +7,53 @@
     </div>
   </div>
   <div class="element--edit">
-    <div class="form-group">
-      <div class="form-group">
-        <label for="title">Geben Sie hier einen Titel ein.</label>
-        <input data-bind="value: element.label" class="form-control" id="title" placeholder="Geben Sie hier einen Titel ein." type="text" />
+
+    <div class="d-flex justify-content-between">
+      <div class="form-group mr-3" style="width: 60%;">
+        <label data-bind="attr: { for: idValue('title',$parentContext.$index(),$index()) }">Geben Sie hier einen Titel ein.</label>
+        <input data-bind="value: element.label, attr: { id: idValue('title',$parentContext.$index(),$index()) }" class="form-control" placeholder="Geben Sie hier einen Titel ein." type="text" />
       </div>
-    </div>
-    <div class="form-group">
-      <label for="helptext">Einen Hilfetext eingeben.</label>
-      <input data-bind="value: element.helptext" class="form-control" id="helptext" placeholder="Einen Hilfetext eingeben." type="text" />
-    </div>
-    <div class="d-flex w-100 justify-content-between form-inline">
-      <div class="form-group">
-        <label for="config">Einschränkungen</label>
-        <select class="custom-select ml-3" id="config">
-          <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+
+      <div class="form-group" style="width: 40%;">
+        <label data-bind="attr: { for: idValue('config',$parentContext.$index(),$index()) }">Fragetyp</label>
+        <select class="custom-select" data-bind="attr: { id: idValue('config',$parentContext.$index(),$index()) }">
+          <option value="text">Kurzantwort</option>
+          <option value="textarea">Absatz</option>
+          <option value="radio">Multiple-Choice Frage</option>
+          <option value="checkbox">Kästchen</option>
+          <option value="paragraph">Text</option>
         </select>
       </div>
-
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <input data-bind="checked: element.required" value="true" type="checkbox" class="custom-control-input" id="required">
-          <label class="custom-control-label" for="required">Pflichtfeld</label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="custom-control custom-checkbox">
-          <input data-bind="checked: element.type == 'textarea'" value="textarea" type="checkbox" class="custom-control-input" id="textarea">
-          <label class="custom-control-label" for="textarea">Lange Antwort</label>
-        </div>
-      </div>
-
-      <span><i class="material-icons">delete_outline</i></span>
     </div>
-    <hr />
-    <button data-bind="click: $root.addElement" type="button" class="btn btn-primary"><i class="material-icons">add</i> Neue Frage hinzufügen</button>
+
+    <div class="form-group">
+      <label data-bind="attr: { for: idValue('helptext',$parentContext.$index(),$index()) }">Einen Hilfetext eingeben.</label>
+      <input data-bind="value: element.helptext, attr: { id: idValue('helptext',$parentContext.$index(),$index()) }" class="form-control" placeholder="Einen Hilfetext eingeben." type="text" />
+    </div>
+    <div class="form-inline">
+      <div class="form-group">
+        <label  data-bind="attr: { for: idValue('subtype',$parentContext.$index(),$index()) }">Einschränkungen</label>
+        <select class="custom-select ml-3" data-bind="attr: { id: idValue('subtype',$parentContext.$index(),$index()) }">
+          <option value="text">Text</option>
+          <option value="number">Zahl</option>
+          <option value="email">E-Mail</option>
+        </select>
+      </div>
+    </div>
+
+    <hr>
+    <div class="d-flex">
+      <span data-bind="visible: element.type != 'title'"><i class="material-icons">delete_outline</i></span>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input data-bind="checked: element.required, attr: { id: idValue('required',$parentContext.$index(),$index()) }" value="true" type="checkbox" class="custom-control-input" />
+          <label class="custom-control-label"  data-bind="attr: { for: idValue('required',$parentContext.$index(),$index()) }">Pflichtfeld</label>
+        </div>
+      </div>
+
+      <span><i class="material-icons">more_vert</i></span>
+
+    </div>
   </div>
 </a>

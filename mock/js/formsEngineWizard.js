@@ -4,10 +4,13 @@ $(document).ready(function() {
     var self = this;
 
     self.element = ko.mapping.fromJSON(element.serialize());
+
+    self.idValue = function(id, page, element){
+        return id+'-'+page+'-'+element;
+    };
   };
   var Page = function(){
     var self = this;
-
     self.elements = ko.observableArray([]),
                     displayMode = function(element) {
                         return element.element.type() + 'Element';

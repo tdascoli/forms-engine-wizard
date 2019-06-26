@@ -42,11 +42,6 @@
 
     <!-- templates -->
     <script id="textElement" src="templates/textElement.html" type="text/html"></script>
-    <script type="text/html" id="textElementManual">
-      <li>
-          <strong data-bind="text: getLabel()"></strong>
-      </li>
-  </script>
 </head>
 <body>
 
@@ -71,16 +66,15 @@
 
 <!-- content -->
 <div class="container">
-
   <div class="tab-content" id="justifiedTabContent">
+    
     <div aria-labelledby="questions-tab"
         class="tab-pane fade show active"
         id="questions"
         role="tabpanel"
         data-bind="foreach: pages"
              class="card mb-3 forms-engine__page">
-      <!-- <form> -->
-      <!-- 1. Item: Title -->
+
       <div class="card mb-3 forms-engine__page">
         <div class="card-header">
           <h5 class="card-title">Abschnitt <span data-bind="text: $index()"></span></h5>
@@ -89,11 +83,14 @@
              data-bind="template: { name: displayMode, foreach: elements }">
         </div>
       </div>
-      <!-- </form> -->
     </div>
+
     <div aria-labelledby="answers-tab" class="tab-pane fade" id="answers" role="tabpanel">...</div>
   </div>
 
+  <div class="element-action">
+    <button data-bind="click: addElement" class="btn btn-float btn-primary my-1 element-action__add" type="button"><i class="material-icons">add</i></button>
+  </div>
 </div>
 </body>
 </html>

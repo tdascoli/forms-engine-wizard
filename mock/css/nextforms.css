@@ -9,6 +9,17 @@
   display: inherit !important;
 }
 
+.element-action {
+  position: relative;
+  z-index: 1000;
+  bottom: 45px;
+  display: block;
+}
+.element-action__add {
+  position: absolute;
+  right: 20px;
+}
+
 /* OLD - ARCHIVED*/
 .nextforms {
   padding-top: 10px;
