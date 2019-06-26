@@ -1,4 +1,19 @@
 $(document).ready(function() {
+  // data (todo: from formsEngine)
+  var types = [
+    { type: 'text', name: 'Kurzantwort' },
+    { type: 'textarea', name: 'Absatz' },
+    { type: 'radio', name: 'Multiple-Choice Frage' },
+    { type: 'checkbox', name: 'Kästchen' },
+    { type: 'paragraph', name: 'Text' }
+  ];
+  var subtypes = {
+    input: [
+      { type: 'text', name: 'Text' },
+      { type: 'number', name: 'Zahl' },
+      { type: 'email', name: 'E-Mail' }
+    ]
+  };
   // utils
   function getElementTemplate(type){
     if (type==='title'){
@@ -24,6 +39,7 @@ $(document).ready(function() {
     var self = this;
 
     self.element = ko.mapping.fromJSON(element.serialize());
+    self.type = ko.observable();
 
     self.idValue = function(id, page, element){
         return id+'-'+page+'-'+element;
@@ -59,17 +75,24 @@ $(document).ready(function() {
 
     self.pages = ko.observableArray();
     self.pages.push(new Page());
-
     self.formTitle = new PageElement(new Title('Form Title'));
 
     self.jsonForm = ko.observable();
 
-    // todo add "correct" element
     self.addElement = function(){
       var page = _.last(self.pages());
-      var element = new Text('Frage X');
+      var element = new Text('Frage');
       page.add(element);
     };
+
+    self.types = ko.observableArray();
+    $.each(types, function(index, value) {
+        self.types.push(value);
+    });
+    self.subtypes = ko.observableArray();
+    $.each(subtypes.input, function(index, value) {
+        self.subtypes.push(value);
+    });
 
     self.generate = function(){
       var json={'formTitle':self.formTitle.element, 'pages':new Array()};
@@ -81,10 +104,7 @@ $(document).ready(function() {
         });
         pageIndex++;
       });
-      var test = ko.toJSON(json);
-
-      console.log(test, json);
-      self.jsonForm(test);
+      self.jsonForm(ko.toJSON(json));
     };
   };
 
