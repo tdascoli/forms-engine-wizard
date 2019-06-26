@@ -1,0 +1,26 @@
+<a href="#"
+   class="element list-group-item list-group-item-action flex-column align-items-start active">
+  <div class="element--rendered">
+    <div class="d-flex flex-column">
+      <strong data-bind="text: element.title"></strong>
+      <span data-bind="text: element.description"></span>
+    </div>
+  </div>
+  <div class="element--edit">
+
+    <div class="form-group">
+      <label for="title-formTitle">Geben Sie hier einen Titel ein.</label>
+      <input data-bind="value: element.title" id="title-formTitle" class="form-control" placeholder="Geben Sie hier einen Titel ein." type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="description-formTitle">Geben Sie hier eine Beschreibung ein.</label>
+      <input data-bind="value: element.description" id="description-formTitle" class="form-control" placeholder="Geben Sie hier eine Beschreibung ein." type="text" />
+    </div>
+
+    <hr>
+    <div class="d-flex">
+      <span><i class="material-icons">more_vert</i></span>
+    </div>
+  </div>
+</a>

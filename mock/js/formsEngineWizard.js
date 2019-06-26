@@ -19,8 +19,7 @@ $(document).ready(function() {
 
     var element = new Text('Frage 1');
     element.isRequired();
-    var test = new PageElement(element);
-    self.elements.push(test);
+    self.elements.push(new PageElement(element));
 
     // todo toggle not correctly working
     self.toggleActive = function(id){
@@ -48,6 +47,8 @@ $(document).ready(function() {
     self.pages = ko.observableArray();
     self.pages.push(new Page());
 
+    self.formTitle = new PageElement(new Title('Form Title'));
+
     self.jsonForm = ko.observable();
 
     // todo add "correct" element
@@ -58,7 +59,7 @@ $(document).ready(function() {
     };
 
     self.generate = function(){
-      var json={'formTitle':new Array(), 'pages':new Array()};
+      var json={'formTitle':self.formTitle.element, 'pages':new Array()};
       var pageIndex=0;
       _.forEach(self.pages(), function(page) {
         json.pages[pageIndex]=new Array();

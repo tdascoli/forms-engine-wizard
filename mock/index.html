@@ -42,6 +42,7 @@
 
     <!-- templates -->
     <script id="textElement" src="templates/textElement.html" type="text/html"></script>
+    <script id="titleElement" src="templates/titleElement.html" type="text/html"></script>
 </head>
 <body>
 
@@ -72,15 +73,21 @@
         class="tab-pane fade show active"
         id="questions"
         role="tabpanel"
-        data-bind="foreach: pages"
-             class="card mb-3 forms-engine__page">
+        class="card mb-3 forms-engine__page">
 
-      <div class="card mb-3 forms-engine__page">
-        <div class="card-header">
-          <h5 class="card-title">Abschnitt <span data-bind="text: $index()"></span></h5>
-        </div>
-        <div class="list-group list-group-flush"
-             data-bind="template: { name: displayMode, foreach: elements }">
+      <div class="list-group list-group-flush"
+           data-bind="template: { name: 'titleElement', data: formTitle }">
+      </div>
+
+      <div class="forms_engine"
+           data-bind="foreach: pages">
+        <div class="card mb-3 forms-engine__page">
+          <div class="card-header" data-bind="visible: $index()>0">
+            <h5 class="card-title">Abschnitt <span data-bind="text: $index()"></span></h5>
+          </div>
+          <div class="list-group list-group-flush"
+               data-bind="template: { name: displayMode, foreach: elements }">
+          </div>
         </div>
       </div>
     </div>
