@@ -1,17 +1,23 @@
 $(document).ready(function() {
   // knockout view model
+  var PageElement = function(element){
+    var self = this;
+
+    self.element = ko.mapping.fromJSON(element.serialize());
+  };
   var Page = function(){
     var self = this;
 
     self.elements = ko.observableArray([]),
                     displayMode = function(element) {
-                        return element.getType() + 'Element';
+                        return element.element.type() + 'Element';
                     };
     self.active = ko.observable(0);
 
-    self.test = new Text('Frage 1');
-    self.test.isRequired();
-    self.elements.push(self.test);
+    var element = new Text('Frage 1');
+    element.isRequired();
+    var test = new PageElement(element);
+    self.elements.push(test);
 
     // todo toggle not correctly working
     self.toggleActive = function(id){
@@ -25,7 +31,7 @@ $(document).ready(function() {
     };
 
     self.add = function(element){
-      self.elements.push(element);
+      self.elements.push(new PageElement(element));
     };
 
     self.remove = function(index){

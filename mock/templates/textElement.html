@@ -4,20 +4,20 @@
    class="element list-group-item list-group-item-action flex-column align-items-start">
   <div class="element--rendered">
     <div class="d-flex flex-column">
-      <strong data-bind="text: getLabel()"></strong>
-      <span data-bind="text: getHelptext()"></span>
+      <strong data-bind="text: element.label"></strong>
+      <span data-bind="text: element.helptext"></span>
     </div>
   </div>
   <div class="element--edit">
     <div class="form-group">
       <div class="form-group">
         <label for="title">Geben Sie hier einen Titel ein.</label>
-        <input data-bind="value: getLabel()" class="form-control" id="title" placeholder="Geben Sie hier einen Titel ein." type="text" />
+        <input data-bind="value: element.label" class="form-control" id="title" placeholder="Geben Sie hier einen Titel ein." type="text" />
       </div>
     </div>
     <div class="form-group">
       <label for="helptext">Einen Hilfetext eingeben.</label>
-      <input data-bind="value: getHelptext()" class="form-control" id="helptext" placeholder="Einen Hilfetext eingeben." type="text" />
+      <input data-bind="value: element.helptext" class="form-control" id="helptext" placeholder="Einen Hilfetext eingeben." type="text" />
     </div>
     <div class="d-flex w-100 justify-content-between form-inline">
       <div class="form-group">
@@ -32,14 +32,14 @@
 
       <div class="form-group">
         <div class="custom-control custom-checkbox">
-          <input data-bind="checked: getRequired()" value="true" type="checkbox" class="custom-control-input" id="required">
+          <input data-bind="checked: element.required" value="true" type="checkbox" class="custom-control-input" id="required">
           <label class="custom-control-label" for="required">Pflichtfeld</label>
         </div>
       </div>
 
       <div class="form-group">
         <div class="custom-control custom-checkbox">
-          <input data-bind="checked: getType() == 'textarea'" value="textarea" type="checkbox" class="custom-control-input" id="textarea">
+          <input data-bind="checked: element.type == 'textarea'" value="textarea" type="checkbox" class="custom-control-input" id="textarea">
           <label class="custom-control-label" for="textarea">Lange Antwort</label>
         </div>
       </div>
