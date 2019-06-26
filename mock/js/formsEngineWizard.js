@@ -39,7 +39,7 @@ $(document).ready(function() {
     var self = this;
 
     self.element = ko.mapping.fromJSON(element.serialize());
-    self.type = ko.observable();
+    self.type = ko.observable(element.type);
 
     self.idValue = function(id, page, element){
         return id+'-'+page+'-'+element;
@@ -47,24 +47,21 @@ $(document).ready(function() {
   };
   var Page = function(){
     var self = this;
+
+    self.elements = ko.observableArray([]),
+                    displayMode = function(element) {
+                        return getElementTemplate(element.type());
+                    };
+
+    self.elements.push(new PageElement(new Text('Frage')));
+
     self.pageNumber = function(index){
       var pageNumber = index + 1;
       return pageNumber;
-    }
-    self.elements = ko.observableArray([]),
-                    displayMode = function(element) {
-                        return getElementTemplate(element.element.type());
-                    };
-    self.active = ko.observable(0);
-
-    var element = new Text('Frage 1');
-    element.isRequired();
-    self.elements.push(new PageElement(element));
-
+    };
     self.add = function(element){
       self.elements.push(new PageElement(element));
     };
-
     self.remove = function(index){
       self.elements.splice(index,1);
     };
