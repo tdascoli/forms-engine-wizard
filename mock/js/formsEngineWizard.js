@@ -1,4 +1,24 @@
 $(document).ready(function() {
+  // utils
+  function getElementTemplate(type){
+    if (type==='title'){
+      return 'titleElement';
+    }
+    else if (type==='paragraph') {
+      return 'paragraphElement';
+    }
+    else if (type==='textarea') {
+      return 'textareaElement';
+    }
+    else if (type==='select') {
+      return 'selectElement';
+    }
+    else if (type==='radio' || type==='checkbox') {
+      return 'bulletElement';
+    }
+    return 'inputElement';
+  }
+
   // knockout view model
   var PageElement = function(element){
     var self = this;
@@ -17,24 +37,13 @@ $(document).ready(function() {
     }
     self.elements = ko.observableArray([]),
                     displayMode = function(element) {
-                        return element.element.type() + 'Element';
+                        return getElementTemplate(element.element.type());
                     };
     self.active = ko.observable(0);
 
     var element = new Text('Frage 1');
     element.isRequired();
     self.elements.push(new PageElement(element));
-
-    // todo toggle not correctly working
-    self.toggleActive = function(id){
-        self.active(id);
-    };
-    self.isActive = function(id){
-      console.log(id, self.active());
-      if (id===self.active()){
-        return 'active';
-      }
-    };
 
     self.add = function(element){
       self.elements.push(new PageElement(element));
