@@ -3,7 +3,6 @@
   <div class="element--rendered">
     <div class="d-flex flex-column">
       <strong data-bind="text: element.label"></strong>
-      <span data-bind="text: element.helptext"></span>
     </div>
   </div>
   <div class="element--edit">
@@ -26,11 +25,6 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <label data-bind="attr: { for: idValue('helptext',$parentContext.$index(),$index()) }">Einen Hilfetext eingeben.</label>
-      <input data-bind="value: element.helptext, attr: { id: idValue('helptext',$parentContext.$index(),$index()) }" class="form-control" placeholder="Einen Hilfetext eingeben." type="text" />
-    </div>
-    
     <div>
       Options
     </div>
