@@ -19,7 +19,9 @@
   position: absolute;
   right: 20px;
 }
-
+.card-title.with-action {
+  margin-bottom: 0;
+}
 .divider-horizontal {
   border-left: 1px solid rgba(0,0,0,.42);
   height: 32px;
