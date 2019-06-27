@@ -20,6 +20,13 @@
   right: 20px;
 }
 
+.divider-horizontal {
+  border-left: 1px solid rgba(0,0,0,.42);
+  height: 32px;
+  margin: 0 16px;
+  width: 0;
+}
+
 /* OLD - ARCHIVED*/
 .nextforms {
   padding-top: 10px;

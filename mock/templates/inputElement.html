@@ -46,10 +46,12 @@
     </div>
 
     <hr>
-    <div class="d-flex">
+    <div class="d-flex justify-content-end align-items-center form-inline">
       <span data-bind="visible: element.type != 'title'"><i class="material-icons">delete_outline</i></span>
 
-      <div class="form-group">
+      <p class="divider-horizontal"></p>
+
+      <div class="form-group mr-3">
         <div class="custom-control custom-checkbox">
           <input data-bind="checked: element.required, attr: { id: idValue('required',$parentContext.$index(),$index()) }" value="true" type="checkbox" class="custom-control-input" />
           <label class="custom-control-label"  data-bind="attr: { for: idValue('required',$parentContext.$index(),$index()) }">Pflichtfeld</label>
