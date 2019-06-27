@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+
+    <title>FormsEngine Wizard</title>
+
+    <!-- CSS -->
+    <!-- Add Material font (Roboto) and Material icon as needed -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Add Material CSS, replace Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daemonite-material@4.1.1/css/material.min.css">
+
+    <!-- nextforms -->
+    <link rel="stylesheet" href="css/nextforms.css">
+
+    <!-- JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/daemonite-material@4.1.1/js/material.min.js"></script>
+
+    <!-- dependencies: todo npm -->
+    <script src="https://cdn.jsdelivr.net/npm/joii@4.1.1/dist/joii.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/knockout@3.5.0/build/output/knockout-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/knockout-mapping@2.6.0/dist/knockout.mapping.min.js"></script>
+
+    <!-- FormsEngine Wizard -->
+    <script src="FormsEngineJS/formsEngine.min.js"></script>
+    <script src="js/formsEngineWizard.js"></script>
+
+    <!-- templates -->
+    <script id="titleElement" src="templates/titleElement.html" type="text/html"></script>
+    <script id="inputElement" src="templates/inputElement.html" type="text/html"></script>
+    <script id="textareaElement" src="templates/textareaElement.html" type="text/html"></script>
+</head>
+<body>
+
+<header class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="index.html">FormsEngine Wizard</a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    </li>
+  </ul>
+</header>
+
+<div class="bg-primary navbar-full">
+  <div class="container">
+    <ul class="nav nav-justified nav-tabs bg-light" id="justifiedTab" role="tablist">
+      <li class="nav-item">
+        <a aria-controls="questions" aria-selected="true" class="nav-link active" data-toggle="tab" href="#questions" id="home-tab" role="tab">Questions</a>
+      </li>
+      <li class="nav-item">
+        <a aria-controls="answers" aria-selected="false" class="nav-link" data-toggle="tab" href="#answers" id="profile-tab" role="tab">Answers</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- content -->
+<div class="container">
+  <div class="tab-content" id="justifiedTabContent">
+
+    <div aria-labelledby="questions-tab"
+        class="tab-pane fade show active"
+        id="questions"
+        role="tabpanel"
+        class="card mb-3 forms-engine__page">
+
+      <!-- form title -->
+      <div class="card forms-engine__title">
+        <div class="card-header">
+          <h5 class="card-title">Abschnitt 1</h5>
+        </div>
+        <div class="list-group list-group-flush"
+             data-bind="template: { name: 'titleElement', data: formTitle }">
+        </div>
+      </div>
+      <!-- pages -->
+      <!-- ko foreach: pages -->
+      <div class="card mb-3 forms-engine__page">
+        <div class="card-header" data-bind="visible: $index()>0">
+          <h5 class="card-title">Abschnitt <span data-bind="text: pageNumber($index())"></span></h5>
+        </div>
+
+        <div class="list-group list-group-flush"
+             data-bind="template: { name: displayMode, foreach: elements }">
+        </div>
+      </div>
+      <!-- /ko -->
+    </div>
+
+    <div aria-labelledby="answers-tab" class="tab-pane fade" id="answers" role="tabpanel">...</div>
+  </div>
+
+  <div class="element-action">
+    <button data-bind="click: addElement" class="btn btn-float btn-primary my-1 element-action__add" type="button"><i class="material-icons">add</i></button>
+  </div>
+
+  <button data-bind="click: generate" type="button">mkForm</button>
+  <input data-bind="value: jsonForm" type="text" />
+</div>
+</body>
+</html>

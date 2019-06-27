@@ -49,7 +49,7 @@ $(document).ready(function() {
     var self = this;
 
     self.elements = ko.observableArray([]),
-                    displayMode = function(element) {
+                    elementTemplate = function(element) {
                         return getElementTemplate(element.type());
                     };
 

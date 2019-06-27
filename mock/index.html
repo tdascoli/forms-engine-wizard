@@ -41,42 +41,25 @@
     <script src="js/formsEngineWizard.js"></script>
 
     <!-- templates -->
-    <script id="titleElement" src="templates/titleElement.html" type="text/html"></script>
+    <script id="bulletElement" src="templates/bulletElement.html" type="text/html"></script>
     <script id="inputElement" src="templates/inputElement.html" type="text/html"></script>
+    <script id="paragraphElement" src="templates/paragraphElement.html" type="text/html"></script>
+    <script id="selectElement" src="templates/selectElement.html" type="text/html"></script>
     <script id="textareaElement" src="templates/textareaElement.html" type="text/html"></script>
+    <script id="titleElement" src="templates/titleElement.html" type="text/html"></script>
 </head>
 <body>
-<header class="navbar navbar-dark navbar-full bg-primary doc-navbar-permanent">
-    <a class="navbar-brand" href="index.html">FormsEngine Wizard</a>
+
+<header class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="index.html">FormsEngine Wizard</a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    </li>
+  </ul>
 </header>
 
-<div aria-hidden="true" class="navdrawer navdrawer-permanent" id="navdrawerPermanent" tabindex="-1">
-<div class="navdrawer-content">
-    <div class="navdrawer-header">
-    <a class="navbar-brand px-0" href="javascript:void(0)">Navdrawer header</a>
-    </div>
-    <nav class="navdrawer-nav">
-    <a class="nav-item nav-link active" href="javascript:void(0)">Active</a>
-    <a class="nav-item nav-link disabled" href="javascript:void(0)">Disabled</a>
-    <a class="nav-item nav-link" href="javascript:void(0)">Link</a>
-    </nav>
-    <div class="navdrawer-divider"></div>
-    <p class="navdrawer-subheader">Navdrawer subheader</p>
-    <ul class="navdrawer-nav">
-    <li class="nav-item">
-        <a class="nav-link active" href="javascript:void(0)"><i class="material-icons mr-3">alarm_on</i> Active with icon</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="javascript:void(0)"><i class="material-icons mr-3">alarm_off</i> Disabled with icon</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0)"><i class="material-icons mr-3">link</i> Link with icon</a>
-    </li>
-    </ul>
-</div>
-</div>
-
-<div class="bg-dark">
+<div class="bg-primary navbar-full">
   <div class="container">
     <ul class="nav nav-justified nav-tabs bg-light" id="justifiedTab" role="tablist">
       <li class="nav-item">
@@ -116,7 +99,7 @@
         </div>
 
         <div class="list-group list-group-flush"
-             data-bind="template: { name: displayMode, foreach: elements }">
+             data-bind="template: { name: elementTemplate, foreach: elements }">
         </div>
       </div>
       <!-- /ko -->
