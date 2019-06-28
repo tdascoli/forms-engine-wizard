@@ -63,7 +63,8 @@ $(document).ready(function() {
       self.elements.push(new PageElement(element));
     };
     self.remove = function(index){
-      self.elements.splice(index,1);
+      console.log('element',index);
+      console.log(self.elements.splice(index,1));
     };
   };
 

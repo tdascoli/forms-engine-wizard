@@ -9,16 +9,20 @@
   display: inherit !important;
 }
 
-.element-action {
-  position: relative;
-  z-index: 1000;
-  bottom: 45px;
-  display: block;
+.nav-link.nav-icon-link {
+  height: 2.5rem;
+  line-height: 2.5rem;
+  width: 2.5rem;
+  min-width: 0;
+  padding: 0;
+  border-radius: 50%;
 }
-.element-action__add {
-  position: absolute;
-  right: 20px;
+
+.btn-menu,
+.btn-menu:active {
+    box-shadow: none;
 }
+
 .card-title.with-action {
   margin-bottom: 0;
 }
