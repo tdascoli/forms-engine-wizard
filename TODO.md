@@ -3,9 +3,13 @@
 * ~~choose which framework to use?~~
 * ~~use forms-engine abstracts for creating formdefinition~~
 
-# Design
+# Wizard
 
 * how: button add element (ms forms or google forms)
+* autosave form
+  * persistence?
+* show additional elements via menu (in template)
+* toggle active (element)
 
 # FormDefinition
 

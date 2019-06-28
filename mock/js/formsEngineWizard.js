@@ -39,21 +39,25 @@ $(document).ready(function() {
     var self = this;
 
     self.element = ko.mapping.fromJSON(element.serialize());
-    self.type = ko.observable(element.type);
+    self.type = ko.observable(element.getType());
 
     self.idValue = function(id, page, element){
         return id+'-'+page+'-'+element;
     };
   };
-  var Page = function(){
+  var Page = function(withTitle = false){
     var self = this;
 
     self.elements = ko.observableArray([]),
                     elementTemplate = function(element) {
                         return getElementTemplate(element.type());
                     };
+    if (withTitle){
+      self.elements.push(new PageElement(new Paragraph('Unbenannter Abschnitt')));
+    }
 
-    self.elements.push(new PageElement(new Text('Frage')));
+    var question = new Text('Frage');
+    self.elements.push(new PageElement(question));
 
     self.pageNumber = function(index){
       var pageNumber = index + 1;
@@ -63,8 +67,7 @@ $(document).ready(function() {
       self.elements.push(new PageElement(element));
     };
     self.remove = function(index){
-      console.log('element',index);
-      console.log(self.elements.splice(index,1));
+      self.elements.splice(index,1);
     };
   };
 
@@ -77,6 +80,9 @@ $(document).ready(function() {
 
     self.jsonForm = ko.observable();
 
+    self.addPage = function(){
+      self.pages.push(new Page(true));
+    };
     self.addElement = function(){
       var page = _.last(self.pages());
       var element = new Text('Frage');
