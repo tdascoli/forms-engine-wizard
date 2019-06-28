@@ -33,7 +33,7 @@
 
     <hr>
     <div class="d-flex justify-content-end align-items-center form-inline">
-      <span data-bind="visible: element.type != 'title'"><i class="material-icons">delete_outline</i></span>
+      <button class="btn btn-float btn-sm btn-menu" data-bind="click: $parent.remove.bind($data, $index())"><i class="material-icons">delete_outline</i></button>
     </div>
   </div>
 </a>
