@@ -78,7 +78,7 @@ $(document).ready(function() {
     self.pages.push(new Page());
     self.formTitle = new PageElement(new Title('Form Title'));
 
-    self.jsonForm = ko.observable();
+    self.jsonForm = ko.observable().extend({ cookie: 'jsonForm' });
 
     self.addPage = function(){
       self.pages.push(new Page(true));
@@ -109,6 +109,8 @@ $(document).ready(function() {
         pageIndex++;
       });
       self.jsonForm(ko.toJSON(json));
+      // open new window
+      window.open('form.php', '_blank');
     };
   };
 

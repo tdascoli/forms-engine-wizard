@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 
 use FormsEngine\FormsEngine;
 
-$engine = new FormsEngine();
+$engine = new FormsEngine(false);
 $form = $engine->renderer();
 
 $serializedString="";
@@ -21,8 +21,8 @@ if (isset($_GET['form'])){
   $serializedString = json_encode($response->body);
 }
 
-if (isset($_POST['form'])){
-  $serializedString = $_POST['form'];
+if (isset($_COOKIE['jsonForm'])){
+  $serializedString = $_COOKIE['jsonForm'];
 }
 ?>
 <!DOCTYPE html>
