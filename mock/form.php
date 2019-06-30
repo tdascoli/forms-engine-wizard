@@ -28,6 +28,10 @@ if (isset($_GET['form'])){
       echo $_GET['form'].' nicht vorhanden';
   }
 }
+
+if (isset($_POST['form'])){
+  $serializedString = $_POST['form'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -89,6 +93,9 @@ if (isset($_GET['form'])){
     <?php
       if (isset($serializedString) && $serializedString!=""){
         $form->load($serializedString);
+      }
+      else {
+        echo 'kein Formular vorhanden';
       }
     ?>
 </div>

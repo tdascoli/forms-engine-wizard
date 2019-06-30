@@ -62,7 +62,7 @@
       <a class="nav-link" href="#"><i class="material-icons">palette</i></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><i class="material-icons">computer</i></a>
+      <a class="nav-link" href="#" data-bind="click: generate"><i class="material-icons">computer</i></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#"><i class="material-icons">settings</i></a>
@@ -140,7 +140,6 @@
     <div aria-labelledby="answers-tab" class="tab-pane fade" id="answers" role="tabpanel">...</div>
   </div>
 
-  <button data-bind="click: generate" type="button">mkForm</button>
   <input data-bind="value: jsonForm" type="text" />
 </div>
 </body>
