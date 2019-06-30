@@ -8,9 +8,26 @@ error_reporting(E_ALL);
 
 use FormsEngine\FormsEngine;
 
-$serializedString = '{"formTitle":{"__joii_type":"465a20e4-9691-483a-984a-01210111925b","title":"Form Title","description":"","id":"","name":"","label":"","type":"title","placeholder":"","helptext":"","value":"","required":false,"inputmask":[],"style":[],"attributes":[],"readonly":false,"disabled":false,"__ko_mapping__":{"ignore":[],"include":["_destroy"],"copy":[],"observe":[],"mappedProperties":{"__joii_type":true,"title":true,"description":true,"id":true,"name":true,"label":true,"type":true,"placeholder":true,"helptext":true,"value":true,"required":true,"inputmask":true,"style":true,"attributes":true,"readonly":true,"disabled":true},"copiedProperties":{}}},"pages":[[{"__joii_type":"2b02c647-5ec1-472f-847b-b21fd1da6ab8","id":"frage1","name":"frage1","label":"Frage 1","type":"text","placeholder":"","helptext":"","value":"","required":true,"inputmask":[],"style":[],"attributes":[],"readonly":false,"disabled":false,"__ko_mapping__":{"ignore":[],"include":["_destroy"],"copy":[],"observe":[],"mappedProperties":{"__joii_type":true,"id":true,"name":true,"label":true,"type":true,"placeholder":true,"helptext":true,"value":true,"required":true,"inputmask":true,"style":true,"attributes":true,"readonly":true,"disabled":true},"copiedProperties":{}}},{"__joii_type":"2b02c647-5ec1-472f-847b-b21fd1da6ab8","id":"frageX","name":"frageX","label":"Frage X","type":"text","placeholder":"","helptext":"","value":"","required":false,"inputmask":[],"style":[],"attributes":[],"readonly":false,"disabled":false,"__ko_mapping__":{"ignore":[],"include":["_destroy"],"copy":[],"observe":[],"mappedProperties":{"__joii_type":true,"id":true,"name":true,"label":true,"type":true,"placeholder":true,"helptext":true,"value":true,"required":true,"inputmask":true,"style":true,"attributes":true,"readonly":true,"disabled":true},"copiedProperties":{}}}]]}';
 $engine = new FormsEngine();
 $form = $engine->renderer();
+
+$serializedString="";
+if (isset($_GET['form'])){
+  $filename = __DIR__ .'/forms/'.$_GET['form'].'.json';
+  if (file_exists($filename)){
+    $handle = fopen($filename,'r');
+    if (!$handle){
+      echo $_GET['form'].' nicht vorhanden';
+    }
+    else {
+      $serializedString = fread($handle, filesize($filename));
+      fclose($handle);
+    }
+  }
+  else {
+      echo $_GET['form'].' nicht vorhanden';
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -70,7 +87,9 @@ $form = $engine->renderer();
       <pre><?= $serializedString ?></pre>
     </p>
     <?php
-      $form->load($serializedString);
+      if (isset($serializedString) && $serializedString!=""){
+        $form->load($serializedString);
+      }
     ?>
 </div>
 

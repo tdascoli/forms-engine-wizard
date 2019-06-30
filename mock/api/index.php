@@ -2,7 +2,7 @@
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-require '../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 $app = new \Slim\App;
 $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
@@ -12,20 +12,19 @@ $app->get('/hello/{name}', function (Request $request, Response $response, array
     return $response;
 });
 
-$app->post('/testfunct', testFunct);
-function testFunct($tmsg) {
-   $request = Slim::getInstance()->request();
-   echo $request->getBody();
-}
-
 $app->put('/forms/{formId}',  function (Request $request, Response $response, array $args) {
     $formId = $args['formId'];
 
     $body = $request->getBody();
-    $user = json_decode($body);
-    //var_dump($user);
+    $form = json_decode($body);
 
-    $response->getBody()->write("Hello, $formId:".$user->test);
+    $handle = fopen(__DIR__ .'/../forms/'.$formId.'.json','w+');
+    fwrite($handle, \json_encode($form));
+    fclose($handle);
+
+    $response->getBody()->write('ok');
+
+
 
     return $response;
 });
