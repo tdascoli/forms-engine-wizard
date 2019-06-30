@@ -18,7 +18,7 @@ if (isset($_GET['form'])){
   $response = \Httpful\Request::get($url)
       ->expectsJson()
       ->send();
-  $serializedString = json_decode($response->body);
+  $serializedString = json_encode($response->body);
 }
 
 if (isset($_POST['form'])){
