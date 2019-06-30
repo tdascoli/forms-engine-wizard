@@ -78,9 +78,6 @@ if (isset($_COOKIE['jsonForm'])){
 <!-- content -->
 <div class="container">
     <h3 class="mt-3">FormsEngine</h3>
-    <p>
-      <pre><?= $serializedString ?></pre>
-    </p>
     <?php
       if (isset($serializedString) && $serializedString!=""){
         $form->load($serializedString);
