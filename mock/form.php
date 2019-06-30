@@ -13,19 +13,15 @@ $form = $engine->renderer();
 
 $serializedString="";
 if (isset($_GET['form'])){
-  $filename = __DIR__ .'/forms/'.$_GET['form'].'.json';
-  if (file_exists($filename)){
-    $handle = fopen($filename,'r');
-    if (!$handle){
-      echo $_GET['form'].' nicht vorhanden';
-    }
-    else {
-      $serializedString = fread($handle, filesize($filename));
-      fclose($handle);
-    }
-  }
-  else {
-      echo $_GET['form'].' nicht vorhanden';
+  $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")."://{$_SERVER['HTTP_HOST']}/api/forms/{$_GET['form']}";
+
+  if (isset($_GET['form'])){
+    $response = \Httpful\Request::get($url)
+        ->expectsJson()
+        ->send();
+
+        var_dump($response->body);
+    //$serializedString = $response->body;
   }
 }
 
@@ -62,7 +58,6 @@ if (isset($_POST['form'])){
     <script src="https://cdn.jsdelivr.net/npm/parsleyjs@2.9.1/dist/parsley.min.js"></script>
 
     <!-- FormsEngine JS + deps -->
-    <script src="https://cdn.jsdelivr.net/npm/melanke-watchjs@1.5.0/src/watch.min.js"></script>
     <script src="js/formsEngine.pagination.js"></script>
 </head>
 <body>

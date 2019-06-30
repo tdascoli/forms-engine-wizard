@@ -1,6 +1,7 @@
 {
     "require": {
         "apollo29/forms-engine": "^0.0.2",
-        "slim/slim": "^3.12"
+        "slim/slim": "^3.12",
+        "nategood/httpful": "^0.2.20"
     }
 }
