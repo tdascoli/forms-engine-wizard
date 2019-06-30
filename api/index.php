@@ -22,7 +22,7 @@ $app->put('/forms/{formId}',  function (Request $request, Response $response, ar
     $body = $request->getBody();
     $form = json_decode($body);
 
-    $handle = fopen(__DIR__ .'/../forms/'.$formId.'.json','w+');
+    $handle = fopen(__DIR__ .'/../mock/forms/'.$formId.'.json','w+');
     fwrite($handle, \json_encode($form));
     fclose($handle);
 
@@ -32,7 +32,7 @@ $app->put('/forms/{formId}',  function (Request $request, Response $response, ar
 
 $app->get('/forms/{formId}',  function (Request $request, Response $response, array $args) {
     $formId = $args['formId'];
-    $filename = __DIR__ .'/../forms/'.$formId.'.json';
+    $filename = __DIR__ .'/../mock/forms/'.$formId.'.json';
 
     if (file_exists($filename)){
       $handle = fopen($filename,'r');
