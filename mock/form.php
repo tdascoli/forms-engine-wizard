@@ -15,14 +15,10 @@ $serializedString="";
 if (isset($_GET['form'])){
   $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")."://{$_SERVER['HTTP_HOST']}/api/forms/{$_GET['form']}";
 
-  if (isset($_GET['form'])){
-    $response = \Httpful\Request::get($url)
-        ->expectsJson()
-        ->send();
-
-        var_dump($response->body);
-    //$serializedString = $response->body;
-  }
+  $response = \Httpful\Request::get($url)
+      ->expectsJson()
+      ->send();
+  $serializedString = json_decode($response->body);
 }
 
 if (isset($_POST['form'])){
