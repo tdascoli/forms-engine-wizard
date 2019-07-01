@@ -35,7 +35,7 @@ $(document).ready(function() {
   }
 
   // knockout view model
-  var PageElement = function(element){
+  var PageElement = function(element, isActive = ''){
     var self = this;
 
     self.element = ko.mapping.fromJSON(element.serialize());
@@ -43,6 +43,11 @@ $(document).ready(function() {
 
     self.idValue = function(id, page, element){
         return id+'-'+page+'-'+element;
+    };
+
+    self.active = ko.observable(isActive);
+    self.activate = function(){
+      self.active('active');
     };
   };
   var Page = function(withTitle = false){
@@ -63,8 +68,8 @@ $(document).ready(function() {
       var pageNumber = index + 1;
       return pageNumber;
     };
-    self.add = function(element){
-      self.elements.push(new PageElement(element));
+    self.add = function(element,active){
+      self.elements.push(new PageElement(element,active));
     };
     self.remove = function(index){
       self.elements.splice(index,1);
@@ -86,13 +91,17 @@ $(document).ready(function() {
     self.addElement = function(){
       var page = _.last(self.pages());
       var element = new Text('Frage');
-      page.add(element);
+      page.add(element,'active');
     };
 
     self.types = ko.observableArray();
     $.each(types, function(index, value) {
         self.types.push(value);
     });
+    self.typeOf = function(type){
+      return _.find(self.types(), { 'type': type });
+    };
+    self.typeOfFormTitle = 'Form Titel';
     self.subtypes = ko.observableArray();
     $.each(subtypes.input, function(index, value) {
         self.subtypes.push(value);

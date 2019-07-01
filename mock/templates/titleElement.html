@@ -1,7 +1,8 @@
-<a href="#"
-   class="element list-group-item list-group-item-action flex-column align-items-start active">
+<div class="element list-group-item list-group-item-action flex-column align-items-start"
+     data-bind="class: active">
   <div class="element--rendered">
-    <div class="d-flex flex-column">
+    <div data-bind="click: activate" class="d-flex flex-column cursor-pointer">
+      <span class="text-muted" data-bind="text: $root.typeOfFormTitle "></span>
       <strong data-bind="text: element.title"></strong>
       <span data-bind="text: element.description"></span>
     </div>

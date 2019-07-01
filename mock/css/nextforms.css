@@ -1,4 +1,7 @@
 /* todo SASS */
+.cursor-pointer {
+  cursor: pointer;
+}
 .element--edit,
 .active > .element--rendered {
   display: none !important;
