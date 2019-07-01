@@ -16,6 +16,7 @@
 * Persistence?
 * ~~create example json~~
 * what is more than in formsengine?
+* add config/settings (page and "json")
 
 # Docs & Example
 

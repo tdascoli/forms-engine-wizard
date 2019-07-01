@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "747786f6f348b43ebfeed5a1e0efd903",
+    "content-hash": "4913a978ef71300d2fb1376bee7e2b24",
     "packages": [
         {
             "name": "apollo29/forms-engine",
-            "version": "0.0.2",
+            "version": "0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tdascoli/forms-engine.git",
-                "reference": "f47890d58152be248164e6ea93dec9b114d736db"
+                "reference": "60f7b789b9b94b193cd3201b2784fa1308e0d166"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tdascoli/forms-engine/zipball/f47890d58152be248164e6ea93dec9b114d736db",
-                "reference": "f47890d58152be248164e6ea93dec9b114d736db",
+                "url": "https://api.github.com/repos/tdascoli/forms-engine/zipball/60f7b789b9b94b193cd3201b2784fa1308e0d166",
+                "reference": "60f7b789b9b94b193cd3201b2784fa1308e0d166",
                 "shasum": ""
             },
             "require": {
@@ -33,8 +33,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "FormsEngine\\": "src/FormsEngine/",
-                    "Somewhere\\Persistence\\": "docs/persistence/"
+                    "FormsEngine\\": "src/FormsEngine/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -48,7 +47,7 @@
                 }
             ],
             "description": "Forms Engine",
-            "time": "2019-06-27T20:07:08+00:00"
+            "time": "2019-07-01T13:20:48+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -658,16 +657,16 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "84e09df79855ed3da84e2eab6850eb7741d8cbda"
+                "reference": "0e6238c69e863b58aeece61e48ea032696c6dccd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/84e09df79855ed3da84e2eab6850eb7741d8cbda",
-                "reference": "84e09df79855ed3da84e2eab6850eb7741d8cbda",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/0e6238c69e863b58aeece61e48ea032696c6dccd",
+                "reference": "0e6238c69e863b58aeece61e48ea032696c6dccd",
                 "shasum": ""
             },
             "require": {
@@ -748,7 +747,7 @@
                 "xls",
                 "xlsx"
             ],
-            "time": "2019-05-26T02:50:36+00:00"
+            "time": "2019-06-30T22:55:25+00:00"
         },
         {
             "name": "phpoption/phpoption",
