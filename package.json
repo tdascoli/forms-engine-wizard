@@ -1,0 +1,29 @@
+{
+  "name": "forms-engine-wizard",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdascoli/forms-engine-wizard.git"
+  },
+  "author": "tdascoli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tdascoli/forms-engine-wizard/issues"
+  },
+  "homepage": "https://github.com/tdascoli/forms-engine-wizard#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.2.0",
+    "gulp-minify": "^3.1.0"
+  },
+  "dependencies": {
+    "del": "^4.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-inject": "^5.0.2",
+    "gulp-rename": "^1.4.0"
+  }
+}
