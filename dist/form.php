@@ -54,6 +54,7 @@ if (isset($_COOKIE['jsonForm'])){
 
     <!-- FormsEngine JS -->
     <!-- pagination:js -->
+    <script src="js/formsEngine.pagination.min.js"></script>
     <!-- endinject -->
 </head>
 <body>

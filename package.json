@@ -16,15 +16,19 @@
   },
   "homepage": "https://github.com/tdascoli/forms-engine-wizard#readme",
   "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "event-stream": "^4.0.1",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.2.0",
     "gulp-minify": "^3.1.0"
   },
   "dependencies": {
     "del": "^4.1.1",
-    "forms-engine.js": "0.0.1",
+    "forms-engine.js": "0.0.2",
     "gulp-concat": "^2.6.1",
+    "gulp-copy": "^4.0.1",
     "gulp-inject": "^5.0.2",
-    "gulp-rename": "^1.4.0"
+    "gulp-rename": "^1.4.0",
+    "stream-series": "^0.1.1"
   }
 }
