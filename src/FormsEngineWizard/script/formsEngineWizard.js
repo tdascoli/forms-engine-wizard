@@ -71,6 +71,10 @@ $(document).ready(function() {
     self.add = function(element,active){
       self.elements.push(new PageElement(element,active));
     };
+    self.addElement = function(){
+      var element = new Text('Frage');
+      self.add(element,'active');
+    };
     self.remove = function(index){
       self.elements.splice(index,1);
     };
@@ -83,12 +87,13 @@ $(document).ready(function() {
     self.pages.push(new Page());
     self.formTitle = new PageElement(new Title('Form Title'));
 
+    self.canSave =  ko.observable(false);
     self.jsonForm = ko.observable().extend({ cookie: 'jsonForm' });
 
     self.addPage = function(){
       self.pages.push(new Page(true));
     };
-    self.addElement = function(){
+    self.addElement = function(page){
       var page = _.last(self.pages());
       var element = new Text('Frage');
       page.add(element,'active');

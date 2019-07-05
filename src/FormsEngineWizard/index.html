@@ -8,29 +8,27 @@
     <title>FormsEngine Wizard</title>
 
     <!-- CSS -->
-    <!-- Add Material font (Roboto) and Material icon as needed -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Add Material CSS, replace Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daemonite-material@4.1.1/css/material.min.css">
 
-    <!-- formsEngineWizard -->
+    <!-- formsEngineWizard todo inject and sass -->
     <link rel="stylesheet" href="css/formsEngineWizard.css">
 
     <!-- JS -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
     <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/daemonite-material@4.1.1/js/material.min.js"></script>
 
-    <!-- dependencies: todo npm -->
+    <!-- dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/joii@4.1.1/dist/joii.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
@@ -41,7 +39,7 @@
     <!-- inject:js -->
     <!-- endinject -->
 
-    <!-- templates -->
+    <!-- templates todo  -->
     <script id="bulletElement" src="templates/bulletElement.html" type="text/html"></script>
     <script id="inputElement" src="templates/inputElement.html" type="text/html"></script>
     <script id="paragraphElement" src="templates/paragraphElement.html" type="text/html"></script>
@@ -59,17 +57,14 @@
     </li>
   </ul>
   <ul class="navbar-nav">
-    <li class="nav-item invisible">
-      <a class="nav-link" href="#"><i class="material-icons">palette</i></a>
-    </li>
     <li class="nav-item">
       <a class="nav-link" href="#" data-bind="click: generate"><i class="material-icons">computer</i></a>
     </li>
-    <li class="nav-item invisible">
+    <li class="nav-item">
       <a class="nav-link" href="#"><i class="material-icons">settings</i></a>
     </li>
-    <li class="nav-item invisible">
-      <button class="btn btn-light" type="button">Senden</button>
+    <li class="nav-item">
+      <button data-bind="enable: canSave" class="btn btn-light" type="button">Speichern</button>
     </li>
     <li class="nav-item invisible">
       <a class="nav-link" href="#"><i class="material-icons">more_vert</i></a>
@@ -99,36 +94,24 @@
         id="questions"
         role="tabpanel"
         class="card mb-3 forms-engine__page">
-
-      <!-- form title -->
-      <div class="card forms-engine__title">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <h5 class="card-title with-action">Abschnitt 1</h5>
-          <div class="d-flex justify-content-end align-items-center">
-            <button data-bind="click: addPage" class="btn btn-light mr-3" type="button">Neuer Abschnitt</button>
-            <button data-bind="click: addElement" class="btn btn-primary" type="button"><i class="material-icons">add</i> Neues Feld</button>
-            <!--
-            <div class="dropdown">
-              <a class="btn btn-float btn-menu btn-sm" id="titleMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="material-icons">more_vert</i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="titleMenu">
-                <button class="dropdown-item" type="button">Neuer Abschnitt</button>
-                <button class="dropdown-item" type="button">Frage hinzufügen</button>
-              </div>
-            </div>
-            -->
-          </div>
-        </div>
-        <div class="list-group list-group-flush"
-             data-bind="template: { name: 'titleElement', data: formTitle }">
-        </div>
-      </div>
       <!-- pages -->
       <!-- ko foreach: pages -->
       <div class="card mb-3 forms-engine__page">
-        <div class="card-header" data-bind="visible: $index()>0">
+        <div class="card-header d-flex justify-content-between align-items-center">
           <h5 class="card-title">Abschnitt <span data-bind="text: pageNumber($index())"></span></h5>
+          <div class="dropdown">
+            <a class="btn btn-float btn-menu btn-sm" id="titleMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons">add_circle</i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="titleMenu">
+              <button data-bind="click: $root.addPage" class="dropdown-item" type="button">Neuer Abschnitt</button>
+              <button data-bind="click: addElement" class="dropdown-item" type="button">Frage hinzufügen</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-group list-group-flush"
+             data-bind="visible: $index()==0, template: { name: 'titleElement', data: $root.formTitle }">
         </div>
 
         <div class="list-group list-group-flush"

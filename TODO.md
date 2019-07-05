@@ -5,17 +5,17 @@
 
 # Wizard
 
-* how: button add element (ms forms or google forms)
-* autosave form
-  * persistence?
-* show additional elements via menu (in template)
+* ~~how: button add element (ms forms or google forms)~~
+* ~~autosave form~~
+  * ~~persistence?~~
+* ~~show additional elements via menu (in template) (?)~~
 * toggle active (element)
 
 # FormDefinition
 
-* Persistence?
+* Persistence via config/settings
 * ~~create example json~~
-* what is more than in formsengine?
+* ~~what is more than in formsengine?~~
 * add config/settings (page and "json")
 
 # Docs & Example
