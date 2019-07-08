@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 $app = new \Slim\App;
 $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
@@ -22,7 +22,7 @@ $app->put('/forms/{formId}',  function (Request $request, Response $response, ar
     $body = $request->getBody();
     $form = json_decode($body);
 
-    $handle = fopen(__DIR__ .'/../mock/forms/'.$formId.'.json','w+');
+    $handle = fopen(__DIR__ .'/../forms/'.$formId.'.json','w+');
     fwrite($handle, \json_encode($form));
     fclose($handle);
 
@@ -32,7 +32,7 @@ $app->put('/forms/{formId}',  function (Request $request, Response $response, ar
 
 $app->get('/forms/{formId}',  function (Request $request, Response $response, array $args) {
     $formId = $args['formId'];
-    $filename = __DIR__ .'/../mock/forms/'.$formId.'.json';
+    $filename = __DIR__ .'/../forms/'.$formId.'.json';
 
     if (file_exists($filename)){
       $handle = fopen($filename,'r');
