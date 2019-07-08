@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "4913a978ef71300d2fb1376bee7e2b24",
@@ -657,16 +657,16 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "1.8.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "0e6238c69e863b58aeece61e48ea032696c6dccd"
+                "reference": "352c7002fefe4e4037d02654d853a1b09520946f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/0e6238c69e863b58aeece61e48ea032696c6dccd",
-                "reference": "0e6238c69e863b58aeece61e48ea032696c6dccd",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/352c7002fefe4e4037d02654d853a1b09520946f",
+                "reference": "352c7002fefe4e4037d02654d853a1b09520946f",
                 "shasum": ""
             },
             "require": {
@@ -747,7 +747,7 @@
                 "xls",
                 "xlsx"
             ],
-            "time": "2019-06-30T22:55:25+00:00"
+            "time": "2019-07-01T20:46:51+00:00"
         },
         {
             "name": "phpoption/phpoption",
