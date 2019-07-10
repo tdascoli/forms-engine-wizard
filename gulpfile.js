@@ -50,8 +50,7 @@ function allSrcJS(){
 // Wizard
 function wizard(){
   return (
-      gulp.src(['./src/FormsEngineWizard/*.php',
-                './src/FormsEngineWizard/*.html'])
+      gulp.src(['./src/FormsEngineWizard/*'])
         .pipe(gulp.dest('./dist/'))
   );
 }

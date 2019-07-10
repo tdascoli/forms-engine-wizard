@@ -8,22 +8,9 @@ error_reporting(E_ALL);
 
 use FormsEngine\FormsEngine;
 
+$_SESSION['configFile'] = __DIR__ . '/config.json';
 $engine = new FormsEngine();
 $form = $engine->renderer();
-
-$serializedString="";
-if (isset($_GET['form'])){
-  $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")."://{$_SERVER['HTTP_HOST']}/api/forms/{$_GET['form']}";
-
-  $response = \Httpful\Request::get($url)
-      ->expectsJson()
-      ->send();
-  $serializedString = json_encode($response->body);
-}
-
-if (isset($_COOKIE['jsonForm'])){
-  $serializedString = $_COOKIE['jsonForm'];
-}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -43,7 +30,10 @@ if (isset($_COOKIE['jsonForm'])){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daemonite-material@4.1.1/css/material.min.css">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
     <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
@@ -68,12 +58,7 @@ if (isset($_COOKIE['jsonForm'])){
 <!-- content -->
 <div class="container">
     <?php
-      if (isset($serializedString) && $serializedString!=""){
-        $form->load($serializedString);
-      }
-      else {
-        echo 'kein Formular vorhanden';
-      }
+      $form->load();
     ?>
 </div>
 

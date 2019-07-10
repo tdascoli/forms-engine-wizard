@@ -1,0 +1,27 @@
+{
+    "addDirPrefix": true,
+    "templateDir":"/Templates/",
+    "langDir":"/Translations/",
+    "form" : {
+        "dir":"/dist/forms/",
+        "name":"defaultForm",
+        "method":"ajax",
+        "messageAfterSubmit":true,
+        "createAnother":true,
+        "addTimestamp":false
+    },
+    "pagination": {
+      "active":true,
+      "reset":false
+    },
+    "render" : {
+        "load":"COOKIE",
+        "config": "jsonForm"
+    },
+    "persistence" : {
+        "email": {
+            "emailTo":"test@test.test"
+        },
+        "externalConfigs": []
+    }
+}
