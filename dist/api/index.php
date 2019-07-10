@@ -1,5 +1,6 @@
 <?php
 session_start();
+// Config
 $_SESSION['configFile'] = __DIR__ . '/../config.json';
 
 require __DIR__ . '/../../vendor/autoload.php';

@@ -1,6 +1,6 @@
 vendor/
 node_modules/
 mock/langcache/
-mock/*.csv
+mock/forms/*.csv
 dist/langcache/
-dist/*.csv
+dist/forms/*.csv

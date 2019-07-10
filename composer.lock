@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd43a3bff2b4c44d7aead1b0499beb9c",
+    "content-hash": "ef3c548f3cfd8126084bda476129bbf8",
     "packages": [
         {
             "name": "apollo29/forms-engine",
-            "version": "0.0.6",
+            "version": "0.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tdascoli/forms-engine.git",
-                "reference": "60bfcc2de6881a3d8261bca22d620b184135c53a"
+                "reference": "e76a6da0c1298c26f10ddbcabe359316f3998173"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tdascoli/forms-engine/zipball/60bfcc2de6881a3d8261bca22d620b184135c53a",
-                "reference": "60bfcc2de6881a3d8261bca22d620b184135c53a",
+                "url": "https://api.github.com/repos/tdascoli/forms-engine/zipball/e76a6da0c1298c26f10ddbcabe359316f3998173",
+                "reference": "e76a6da0c1298c26f10ddbcabe359316f3998173",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,7 @@
                 }
             ],
             "description": "Forms Engine",
-            "time": "2019-07-10T16:01:10+00:00"
+            "time": "2019-07-10T19:08:22+00:00"
         },
         {
             "name": "container-interop/container-interop",

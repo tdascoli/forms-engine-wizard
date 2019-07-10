@@ -1,9 +1,10 @@
 {
     "addDirPrefix": true,
+    "dirPrefix": {},
     "templateDir":"/Templates/",
     "langDir":"/Translations/",
     "form" : {
-        "dir":"/dist/forms/",
+        "dir":"/forms/",
         "name":"defaultForm",
         "method":"ajax",
         "messageAfterSubmit":true,
