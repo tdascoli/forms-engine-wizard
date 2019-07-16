@@ -9,14 +9,14 @@
 * ~~autosave form~~
   * ~~persistence?~~
 * ~~show additional elements via menu (in template) (?)~~
-* toggle active (element)
+* (/) toggle active (element)
 
 # FormDefinition
 
-* Persistence via config/settings
+* (/) Persistence via config/settings
 * ~~create example json~~
 * ~~what is more than in formsengine?~~
-* add config/settings (page and "json")
+* (/) add config/settings (page and "json")
 
 # Docs & Example
 
@@ -24,4 +24,4 @@
 
 # other
 
-* move todos to gh-issues
+* ~~move todos to gh-issues~~
