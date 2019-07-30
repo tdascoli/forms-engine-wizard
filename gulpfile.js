@@ -71,11 +71,14 @@ gulp.task('templates', () => {
 });
 
 gulp.task('inject', () => {
-  return gulp.src(['./app/*.html'])
+  return gulp.src(['./app/*.html','./app/*.php'])
+          .pipe(inject(gulp.src(['./app/assets/components/forms-engine.js/**/*.pagination.min.js'],
+                                {read: false}), {relative: true, name: 'pagination'}))
           .pipe(inject(gulp.src(['./app/assets/js/**/*.min.js',
                                  './app/assets/css/**/*.min.css',
                                  './app/assets/components/**/*.min.js',
-                                 './app/assets/components/**/*.css'],
+                                 './app/assets/components/**/*.css',
+                                 '!./app/assets/components/forms-engine.js/**/*.pagination.min.js'],
                                  {read: false}), {relative: true}))
           .pipe(gulp.dest('./app'));
 });
