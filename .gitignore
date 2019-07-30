@@ -1,7 +1,5 @@
-# FastShell
-# https://HosseinKarami.github.io/fastshell
-# @author Hossein Karami
-
+## PHP
+vendor/
 
 ## Node.js
 lib-cov
