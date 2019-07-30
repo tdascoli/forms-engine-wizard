@@ -11,6 +11,7 @@ error_reporting(E_ALL);
 
 use FormsEngine\Answers\Collection\Collection;
 use FormsEngine\Answers\CompleteHandler\ServerCompleteHandler;
+use FormsEngine\Definitions\Definitions;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -23,36 +24,10 @@ $app->get('/hello/{name}', function (Request $request, Response $response, array
     return $response;
 });
 
-$app->put('/forms/{formId}',  function (Request $request, Response $response, array $args) {
-    $formId = $args['formId'];
+// FormsEngine Wizard
+$app->put('/forms/{formId}', Definitions::class . ':save');
 
-    $body = $request->getBody();
-    $form = json_decode($body);
-
-    $handle = fopen(__DIR__ .'/../forms/'.$formId.'.json','w+');
-    fwrite($handle, \json_encode($form));
-    fclose($handle);
-
-    $response->getBody()->write('ok');
-    return $response;
-});
-
-$app->get('/forms/{formId}',  function (Request $request, Response $response, array $args) {
-    $formId = $args['formId'];
-    $filename = __DIR__ .'/../forms/'.$formId.'.json';
-
-    if (file_exists($filename)){
-      $handle = fopen($filename,'r');
-      $formJson = fread($handle, filesize($filename));
-      fclose($handle);
-
-      $newResponse = $response->withJson(json_decode($formJson));
-    }
-    else {
-      $newResponse = $response->withStatus(404);
-    }
-    return $newResponse;
-});
+$app->get('/forms/{formId}', Definitions::class . ':load');
 
 // FormsEngine
 $app->put('/record/{formId}', ServerCompleteHandler::class . ':save');
