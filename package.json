@@ -16,8 +16,9 @@
   },
   "homepage": "https://github.com/tdascoli/forms-engine-wizard#readme",
   "devDependencies": {
-    "browser-sync": "^2.11.1",
-    "gulp": "^3.9.0",
+    "browser-sync": "^2.26.7",
+    "del": "^4.1.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.0",
@@ -25,7 +26,7 @@
     "gulp-htmlmin": "^3.0.0",
     "gulp-inject": "^5.0.4",
     "gulp-jshint": "^2.0.0",
-    "gulp-rename": "^1.2.2",
+    "gulp-rename": "^1.4.0",
     "gulp-sass": "^2.1.1",
     "gulp-uglify": "^1.5.1",
     "jshint": "^2.8.0"

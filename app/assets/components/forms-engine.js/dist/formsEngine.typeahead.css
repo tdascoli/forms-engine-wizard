@@ -1,0 +1,12 @@
+.typeahead__container {
+    font-family: inherit;
+}
+
+.form-text + .typeahead__result {
+  position: relative;
+  top: -1.625rem;
+}
+
+.typeahead__cancel-button {
+  top: .75rem;
+}
