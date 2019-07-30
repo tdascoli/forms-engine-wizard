@@ -1,14 +1,19 @@
 {
-  "name": "fastshell",
-  "title": "Fiercely quick and opinionated front-ends",
-  "author": "Hossein Karami",
-  "url": "https://HosseinKarami.github.io/fastshell",
-  "version": "1.0.5",
-  "license": "MIT",
+  "name": "forms-engine-wizard",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "http://github.com/HosseinKarami/fastshell.git"
+    "url": "git+https://github.com/tdascoli/forms-engine-wizard.git"
   },
+  "author": "tdascoli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tdascoli/forms-engine-wizard/issues"
+  },
+  "homepage": "https://github.com/tdascoli/forms-engine-wizard#readme",
   "devDependencies": {
     "browser-sync": "^2.11.1",
     "gulp": "^3.9.0",
@@ -20,5 +25,8 @@
     "gulp-sass": "^2.1.1",
     "gulp-uglify": "^1.5.1",
     "jshint": "^2.8.0"
+  },
+  "dependencies": {
+    "forms-engine.js": "0.1.0"
   }
 }
