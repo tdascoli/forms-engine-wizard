@@ -10,9 +10,6 @@ class Definitions {
   protected $container;
 
   public function __construct(ContainerInterface $container) {
-    $dotenv = Dotenv::create($envDir);
-    $dotenv->load();
-
     $this->container = $container;
   }
 
@@ -20,7 +17,7 @@ class Definitions {
     // TODO: implement
     $formId = $args['formId'];
     $type = \getenv('PERSISTENCE_TYPE');
-    
+
     $response->withStatus(404);
     return $response;
   }
@@ -53,11 +50,5 @@ class Definitions {
     }
     return $data;
   }
-
-  public function env($envDir){
-    $dotenv = Dotenv::create($envDir);
-    $dotenv->load();
-  }
-
 }
 ?>
