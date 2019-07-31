@@ -1,7 +1,6 @@
 <?php
 namespace FormsEngine\Definitions;
 
-use Dotenv\Dotenv;
 use Psr\Container\ContainerInterface;
 use FormsEngine\Definitions\Persistence\PersistenceType;
 
@@ -14,7 +13,6 @@ class Definitions {
   }
 
   public function save($request, $response, $args) {
-    // TODO: implement
     $formId = $args['formId'];
     $type = \getenv('PERSISTENCE_TYPE');
 
@@ -39,13 +37,12 @@ class Definitions {
   }
 
   public function load($request, $response, $args) {
-    // TODO: implement
     $formId = $args['formId'];
     $type = \getenv('PERSISTENCE_TYPE');
 
     $data = $this->collect($formId, $type);
 
-    if (!empty($data)){
+    if (!empty($data) && $data != '[]'){
       $newResponse = $response->withJson(json_decode($data));
     }
     else {
