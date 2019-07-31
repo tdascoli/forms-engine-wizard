@@ -17,7 +17,7 @@
         "apollo29/forms-engine": "^0.1.0",
         "slim/slim": "^3.12",
         "nategood/httpful": "^0.2.20",
-    "vlucas/phpdotenv": "^3.4",
-    "rakibtg/sleekdb": "^1.0"
+        "vlucas/phpdotenv": "^3.4",
+        "rakibtg/sleekdb": "^1.0"
     }
 }

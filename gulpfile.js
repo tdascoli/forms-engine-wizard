@@ -102,21 +102,19 @@ gulp.task('copy:dependencies', () => {
 
 gulp.task('dependencies', gulp.series('clean:dependencies', 'copy:dependencies'));
 
-gulp.task('browser-sync', () => {
-    return (browserSync.init(null, {
+gulp.task('build', gulp.series('css', 'js', 'ko.js', 'dependencies', 'templates', 'inject'));
+
+gulp.task('watch', function (done) {
+    browserSync.init(null, {
         server: {
             baseDir: "app"
-        }
-    }));
+        }});
+
+    gulp.watch("./src/scss/**/*.scss", gulp.series('css'));
+    gulp.watch("./src/js/*.js", gulp.series('js'));
+    gulp.watch("./src/js/ko/**/*.js", gulp.series('ko.js'));
+    gulp.watch("./app/*.html", browserSync.reload());
+    done();
 });
 
-gulp.task('bs-reload', () => {
-    return (browserSync.reload());
-});
-
-gulp.task('default', gulp.series('css', 'js', 'ko.js', 'dependencies', 'templates', 'inject', 'browser-sync'), function () {
-    gulp.watch("src/scss/**/*.scss", ['css']);
-    gulp.watch("src/js/*.js", ['js']);
-    gulp.watch("src/js/ko/**/*.js", ['ko.js']);
-    gulp.watch("app/*.html", ['bs-reload']);
-});
+gulp.task('default', gulp.series('build','watch'));

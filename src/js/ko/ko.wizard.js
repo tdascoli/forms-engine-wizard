@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  // data (todo: from formsEngine)
+  // data (todo: from formsEngine?)
   var types = [
     { type: 'text', name: 'Kurzantwort' },
     { type: 'textarea', name: 'Absatz' },
@@ -33,7 +33,6 @@ $(document).ready(function() {
     }
     return 'inputElement';
   }
-
   // knockout view model
   var PageElement = function(element, isActive = ''){
     var self = this;
@@ -50,6 +49,7 @@ $(document).ready(function() {
       self.active('active');
     };
   };
+
   var Page = function(withTitle = false){
     var self = this;
 
