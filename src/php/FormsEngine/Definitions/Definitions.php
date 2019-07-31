@@ -18,8 +18,24 @@ class Definitions {
     $formId = $args['formId'];
     $type = \getenv('PERSISTENCE_TYPE');
 
+    $body = $request->getBody();
+    $form = json_decode($body);
+    $this->persist($formId, $form, $type);
+
+    // todo error!!!
     $response->withStatus(404);
     return $response;
+  }
+
+  private function persist($formId, $form, $type){
+    if (PersistenceType::isValid($type)){
+        $class = 'FormsEngine\Definitions\Persistence\\'.$type;
+        $data = $class::persist($formId, $form);
+    }
+    else if (\class_exists($type)){
+        $class = $type;
+        $data = $class::persist($formId, $form);
+    }
   }
 
   public function load($request, $response, $args) {

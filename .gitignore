@@ -1,6 +1,7 @@
 ## PHP
 vendor/
 forms/
+api/definitions/
 
 ## Node.js
 lib-cov

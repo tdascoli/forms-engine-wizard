@@ -6,18 +6,22 @@ use SleekDB\SleekDB as DB;
 
 class JSONDB implements Persistence {
 
-  public static function persist($name, $data){
-    $store = self::prepare($name);
+  public static function persist($formId, $form){
+    $store = self::prepare();
+    $data['formId'] = $formId;
+    $data['form']   = $form;
     $id = $store->insert($data);
   }
 
-  public static function load($name){
-    $store = self::prepare($name);
-    $data = $store->fetch();
+  public static function load($formId){
+    $name = \getenv('PERSISTENCE_NAME');
+    $store = self::prepare();
+    $data = $store->where('formId','=',$formId)->fetch();
     return \json_encode($data, JSON_PRETTY_PRINT);
   }
 
-  private static function prepare($name){
+  private static function prepare(){
+    $name = \getenv('PERSISTENCE_NAME');
     $path = \getenv('PERSISTENCE_DIR');
     $store = DB::store($name, $path);
     return $store;
