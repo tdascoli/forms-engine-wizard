@@ -18,8 +18,8 @@ var Type = Enum('Type', {
   TITLE     : 'title',
   PARAGRAPH : 'paragraph',
 
-  CHECKBOX_GROUP  : 'checkbox_group',
-  RADIO_GROUP     : 'radio_group'
+  CHECKBOX_GROUP  : 'checkboxGroup',
+  RADIO_GROUP     : 'radioGroup'
 });
 
 var Element = Class({

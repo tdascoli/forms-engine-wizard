@@ -113,7 +113,8 @@ gulp.task('watch', function (done) {
     gulp.watch("./src/scss/**/*.scss", gulp.series('css'));
     gulp.watch("./src/js/*.js", gulp.series('js'));
     gulp.watch("./src/js/ko/**/*.js", gulp.series('ko.js'));
-    gulp.watch("./app/*.html", browserSync.reload());
+    gulp.watch("./src/templates/**/*.html", gulp.series('templates'));
+    gulp.watch("./app/*.html", browserSync.reload);
     done();
 });
 

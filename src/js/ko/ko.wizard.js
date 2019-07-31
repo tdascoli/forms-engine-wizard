@@ -3,8 +3,8 @@ $(document).ready(function() {
   var types = [
     { type: 'text', name: 'Kurzantwort' },
     { type: 'textarea', name: 'Absatz' },
-    { type: 'radio', name: 'Multiple-Choice Frage' },
-    { type: 'checkbox', name: 'Kästchen' },
+    { type: 'radioGroup', name: 'Multiple-Choice Frage' },
+    { type: 'checkboxGroup', name: 'Kästchen' },
     { type: 'paragraph', name: 'Text' }
   ];
   var subtypes = {
@@ -16,29 +16,82 @@ $(document).ready(function() {
   };
   // utils
   function getElementTemplate(type){
-    if (type==='title'){
-      return 'titleElement';
+    switch(type){
+      case 'title':
+        return 'titleElement';
+        break;
+      case 'paragraph':
+        return 'paragraphElement';
+        break;
+      case 'textarea':
+        return 'textareaElement';
+        break;
+      case 'select':
+        return 'selectElement';
+        break;
+      case 'radioGroup':
+      case 'checkboxGroup':
+        return 'bulletElement';
+        break;
+      default:
+        return 'inputElement';
     }
-    else if (type==='paragraph') {
-      return 'paragraphElement';
+  };
+  function getElement(type, label){
+    switch(type){
+      case 'paragraph':
+        return new Paragraph(label);
+        break;
+      case 'textarea':
+        return new Textarea(label);
+        break;
+      case 'select':
+        return new Select(label,Array());
+        break;
+      case 'radioGroup':
+        return new RadioGroup(label,Array(),'');
+        break;
+      case 'checkboxGroup':
+        return new CheckboxGroup(label,Array());
+        break;
+      case 'number':
+        return new Number(label);
+        break;
+      case 'email':
+        return new Email(label);
+        break;
+      default:
+        return new Text(label);
     }
-    else if (type==='textarea') {
-      return 'textareaElement';
-    }
-    else if (type==='select') {
-      return 'selectElement';
-    }
-    else if (type==='radio' || type==='checkbox') {
-      return 'bulletElement';
-    }
-    return 'inputElement';
-  }
+  };
   // knockout view model
+  var OptionElement = function(){
+    var self = this;
+
+    self.options = ko.observableArray([{value: 'Option 1'}]);
+
+    self.add = function(){
+      self.options.push({value: 'Option '+self.options().length});
+    };
+    self.remove = function(option){
+      self.options.remove(option)
+    };
+  };
+
   var PageElement = function(element, isActive = ''){
     var self = this;
 
     self.element = ko.mapping.fromJSON(element.serialize());
+
     self.type = ko.observable(element.getType());
+    self.type.subscribe(function (newType) {
+      var label = self.element.label();
+      var element = getElement(newType,label);
+      self.element=ko.mapping.fromJSON(element.serialize());
+    });
+
+    // options
+    self.option = ko.observable(new OptionElement());
 
     self.idValue = function(id, page, element){
         return id+'-'+page+'-'+element;

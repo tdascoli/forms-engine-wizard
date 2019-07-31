@@ -1,7 +1,8 @@
-## PHP
+## APP
 vendor/
 forms/
 api/definitions/
+app/langcache/
 
 ## Node.js
 lib-cov
