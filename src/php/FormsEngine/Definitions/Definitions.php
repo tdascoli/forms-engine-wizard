@@ -10,6 +10,10 @@ class Definitions {
 
   public function __construct(ContainerInterface $container) {
     $this->container = $container;
+    if (!\getenv('PERSISTENCE_TYPE')){
+      $dotenv = Dotenv\Dotenv::create(__DIR__);
+      $dotenv->load();
+    }
   }
 
   public function save($request, $response, $args) {
