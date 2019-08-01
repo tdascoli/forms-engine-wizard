@@ -170,7 +170,7 @@ $(document).ready(function() {
         self.subtypes.push(value);
     });
 
-    self.generate = function(){
+    self.formDefinition = function(){
       var json={'formTitle':self.formTitle.element, 'pages':new Array()};
       var pageIndex=0;
       _.forEach(self.pages(), function(page) {
@@ -180,7 +180,32 @@ $(document).ready(function() {
         });
         pageIndex++;
       });
-      self.jsonForm(ko.toJSON(json));
+      return ko.toJSON(json);
+    };
+
+    self.save = function(){
+      // todo name!!
+      var name = 'defaultForm';
+      // todo URL!!
+      var url = 'http://localhots:8000/forms/'+name;
+      var json = self.formDefinition();
+      $.ajax({
+          contentType: 'application/json',
+          data: json, //JSON.stringify(data),
+          success: function(){
+            console.log('success', json);
+          },
+          error:  function(e){
+            console.log('error', e, json);
+          },
+          processData: false,
+          type: 'PUT',
+          url: url
+      });
+    };
+
+    self.generate = function(){
+      self.jsonForm(self.formDefinition());
       // open new window
       window.open('form.php', '_blank');
     };
