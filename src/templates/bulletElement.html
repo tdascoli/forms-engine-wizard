@@ -27,7 +27,7 @@
     </div>
 
     <div class="element--edit__options">
-      <div data-bind="foreach: option().options">
+      <div data-bind="foreach: element.options">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text text-muted" id="basic-addon1">
@@ -35,9 +35,9 @@
               <i class="material-icons" data-bind="if: $parent.type() === 'radioGroup'">radio_button_unchecked</i>
             </span>
           </div>
-          <input data-bind="attr: { placeholder: value }" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+          <input data-bind="value: value, attr: { placeholder: value }" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
           <div class="input-group-append">
-            <span class="cursor-pointer text-muted" data-bind="click: $parent.option().remove"><i class="material-icons">close</i></span>
+            <span class="cursor-pointer text-muted" data-bind="click: $parent.removeOption"><i class="material-icons">close</i></span>
           </div>
         </div>
       </div>
@@ -50,9 +50,8 @@
             <i class="material-icons" data-bind="if: type() === 'radioGroup'">radio_button_unchecked</i>
           </span>
         </div>
-        <a class="cursor-pointer" data-bind="click: option().add">Option hinzufügen</a>
+        <a class="cursor-pointer" data-bind="click: addOption">Option hinzufügen</a>
       </div>
-
     </div>
 
     <hr>
