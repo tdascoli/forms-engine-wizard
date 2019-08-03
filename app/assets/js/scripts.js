@@ -10,7 +10,7 @@
 
   'use strict';
 
-  // todo
+  // todo: implement methods
   function onSuccess(){
     console.log('success');
   }

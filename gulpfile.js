@@ -26,6 +26,12 @@ var banner = [
   '\n'
 ].join('');
 
+// BrowserSync Reload
+function reload(done) {
+  browserSync.reload();
+  done();
+}
+
 gulp.task('css', () => {
     return gulp.src('src/scss/style.scss')
             .pipe(sass({errLogToConsole: true}))
@@ -67,7 +73,8 @@ gulp.task('templates', () => {
             minifyCSS: true,
             minifyJS: true
         }))
-        .pipe(gulp.dest('./app/assets/templates'));
+        .pipe(gulp.dest('./app/assets/templates'))
+        .pipe(browserSync.reload({stream:true, once: true}));
 });
 
 gulp.task('inject', () => {
@@ -105,16 +112,17 @@ gulp.task('dependencies', gulp.series('clean:dependencies', 'copy:dependencies')
 gulp.task('build', gulp.series('css', 'js', 'ko.js', 'dependencies', 'templates', 'inject'));
 
 gulp.task('watch', function (done) {
-    browserSync.init(null, {
+    browserSync.init({
         server: {
-            baseDir: "app"
-        }});
+            baseDir: 'app'
+        },
+        notify: false});
 
     gulp.watch("./src/scss/**/*.scss", gulp.series('css'));
     gulp.watch("./src/js/*.js", gulp.series('js'));
     gulp.watch("./src/js/ko/**/*.js", gulp.series('ko.js'));
     gulp.watch("./src/templates/**/*.html", gulp.series('templates'));
-    gulp.watch("./app/*.html", browserSync.reload);
+    gulp.watch("./app/*.html", reload);
     done();
 });
 
