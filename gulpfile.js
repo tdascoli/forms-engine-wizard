@@ -1,85 +1,121 @@
-"use strict";
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    browserSync = require('browser-sync'),
+    autoprefixer = require('gulp-autoprefixer'),
+    concat = require('gulp-concat'),
+    del = require('del'),
+    uglify = require('gulp-uglify'),
+    jshint = require('gulp-jshint'),
+    header  = require('gulp-header'),
+    htmlmin = require('gulp-htmlmin'),
+    inject = require('gulp-inject'),
+    rename = require('gulp-rename'),
+    cssnano = require('gulp-cssnano'),
+    package = require('./package.json');
 
-// Load plugins
-const del = require("del");
-const es = require('event-stream');
-const gulp = require("gulp");
-const concat = require('gulp-concat');
-const rename = require('gulp-rename');
-const minify = require('gulp-minify');
-const inject = require('gulp-inject');
-const copy = require('gulp-copy');
 
-// Clean assets
-function clean() {
-  return del(["./dist/"]);
-}
+var banner = [
+  '/*!\n' +
+  ' * <%= package.name %>\n' +
+  ' * <%= package.title %>\n' +
+  ' * <%= package.homepage %>\n' +
+  ' * @author <%= package.author %>\n' +
+  ' * @version <%= package.version %>\n' +
+  ' * Copyright ' + new Date().getFullYear() + '. <%= package.license %> licensed.\n' +
+  ' */',
+  '\n'
+].join('');
 
-// inject
-function injectJs(){
-  return (
-    gulp.src(['./dist/*.html','./dist/*.php'])
-      .pipe(inject(gulp.src(['./dist/js/*.pagination.min.js'], {read: false}), {relative: true, name: 'pagination'}))
-      .pipe(inject(gulp.src(['./dist/js/*.min.js', '!./dist/js/*.pagination.min.js'], {read: false}), {relative: true}))
-      .pipe(gulp.dest('./dist'))
-  );
-}
+gulp.task('css', () => {
+    return gulp.src('src/scss/style.scss')
+            .pipe(sass({errLogToConsole: true}))
+            .pipe(autoprefixer('last 4 version'))
+            .pipe(gulp.dest('app/assets/css'))
+            .pipe(cssnano())
+            .pipe(rename({ suffix: '.min' }))
+            .pipe(header(banner, { package : package }))
+            .pipe(gulp.dest('app/assets/css'))
+            .pipe(browserSync.reload({stream:true}));
+});
 
-// js
-function allVendorJS(){
-  return (
-    gulp.src(['./node_modules/forms-engine.js/dist/*.min.js'])
-      .pipe(gulp.dest('./dist/js/'))
-  );
-}
+gulp.task('js', () => {
+  return gulp.src('src/js/scripts.js')
+          .pipe(jshint('.jshintrc'))
+          .pipe(jshint.reporter('default'))
+          .pipe(header(banner, { package : package }))
+          .pipe(gulp.dest('app/assets/js'))
+          .pipe(uglify())
+          .pipe(header(banner, { package : package }))
+          .pipe(rename({ suffix: '.min' }))
+          .pipe(gulp.dest('app/assets/js'))
+          .pipe(browserSync.reload({stream:true, once: true}));
+});
 
-function allSrcJS(){
-  return (
-    gulp.src(['./src/**/knockout*.js', './src/**/*.js'])
-      .pipe(concat('formsEngineWizard.js'))
-      .pipe(minify({
-        ext:{
-            min:'.min.js'
-        },
-        noSource: true
-      }))
-      .pipe(gulp.dest('./dist/js/'))
-  );
-}
+gulp.task('ko.js',() => {
+  return gulp.src('src/js/ko/**/*.js')
+          .pipe(concat('ko.formsEngineWizard.min.js'))
+          .pipe(header(banner, { package : package }))
+          .pipe(gulp.dest('app/assets/js/ko'))
+          .pipe(browserSync.reload({stream:true, once: true}));
+});
 
-// Wizard
-function wizard(){
-  return (
-      gulp.src(['./src/FormsEngineWizard/*'])
-        .pipe(gulp.dest('./dist/'))
-  );
-}
-function api(){
-  return (
-      gulp.src(['./src/FormsEngineWizard/api/**/*'])
-        .pipe(gulp.dest('./dist/api'))
-  );
-}
-function templates(){
-  return (
-      gulp.src(['./src/FormsEngineWizard/templates/**/*'])
-        .pipe(gulp.dest('./dist/templates'))
-  );
-}
-function css(){
-  return (
-      gulp.src(['./src/FormsEngineWizard/css/**/*'])
-        .pipe(gulp.dest('./dist/css'))
-  );
-}
+gulp.task('templates', () => {
+    return gulp.src('./src/templates/**/*.html')
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            removeComments: true,
+            minifyCSS: true,
+            minifyJS: true
+        }))
+        .pipe(gulp.dest('./app/assets/templates'));
+});
 
-// define complex tasks
-const allJs = gulp.series(allSrcJS, allVendorJS);
-const injectAllJs = gulp.series(injectJs);
-const app = gulp.series(templates, api, css, wizard);
-const build = gulp.series(clean, gulp.parallel(allJs, app), injectAllJs);
+gulp.task('inject', () => {
+  return gulp.src(['./app/*.html','./app/*.php'])
+          .pipe(inject(gulp.src(['./app/assets/components/forms-engine.js/**/*.pagination.min.js',
+                                 './app/assets/components/forms-engine.js/**/*.typeahead.css'],
+                                {read: false}), {relative: true, name: 'formsEngine'}))
+          .pipe(inject(gulp.src(['./app/assets/js/**/*.min.js',
+                                 './app/assets/css/**/*.min.css',
+                                 './app/assets/components/**/*.min.js',
+                                 './app/assets/components/**/*.css',
+                                 '!./app/assets/components/forms-engine.js/**/*.pagination.min.js',
+                                 '!./app/assets/components/forms-engine.js/**/*.typeahead.css'],
+                                 {read: false}), {relative: true}))
+          .pipe(gulp.dest('./app'));
+});
 
-// export tasks
-exports.clean = clean;
-exports.build = build;
-exports.default = build;
+gulp.task('clean:dependencies', () => {
+  return (del(['./app/assets/components/**','!./app/assets/components/']));
+});
+
+gulp.task('copy:dependencies', () => {
+  var dependencies = Object.keys(package.dependencies);
+  var path = Array();
+  dependencies.forEach(function(dependency){
+    path.push('./node_modules/'+dependency+'/dist/**/*.js');
+    path.push('./node_modules/'+dependency+'/dist/**/*.css');
+  });
+  return gulp.src(path,  {base: './node_modules/'})
+          .pipe(gulp.dest('./app/assets/components/'));
+});
+
+gulp.task('dependencies', gulp.series('clean:dependencies', 'copy:dependencies'));
+
+gulp.task('build', gulp.series('css', 'js', 'ko.js', 'dependencies', 'templates', 'inject'));
+
+gulp.task('watch', function (done) {
+    browserSync.init(null, {
+        server: {
+            baseDir: "app"
+        }});
+
+    gulp.watch("./src/scss/**/*.scss", gulp.series('css'));
+    gulp.watch("./src/js/*.js", gulp.series('js'));
+    gulp.watch("./src/js/ko/**/*.js", gulp.series('ko.js'));
+    gulp.watch("./src/templates/**/*.html", gulp.series('templates'));
+    gulp.watch("./app/*.html", browserSync.reload);
+    done();
+});
+
+gulp.task('default', gulp.series('build','watch'));

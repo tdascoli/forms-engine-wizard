@@ -1,0 +1,9 @@
+.element--edit,
+.active > .element--rendered {
+  display: none !important;
+}
+
+.element--rendered,
+.active > .element--edit {
+  display: inherit !important;
+}
