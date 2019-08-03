@@ -16,6 +16,11 @@ $(document).ready(function() {
     ]
   };
   // utils
+  function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    )
+  };
   function getElementTemplate(type){
     switch(type){
       case 'title':
@@ -80,9 +85,10 @@ $(document).ready(function() {
     self.id = _.camelCase(self.value());
   };
 
-  var PageElement = function(element, isActive = ''){
+  var PageElement = function(element, uuid = uuidv4()){
     var self = this;
 
+    self.uuid = uuid;
     self.element = ko.mapping.fromJSON(element.serialize());
 
     self.type = ko.observable(element.getType());
@@ -95,9 +101,11 @@ $(document).ready(function() {
         return id+'-'+page+'-'+element;
     };
 
-    self.active = ko.observable(isActive);
-    self.activate = function(){
-      self.active('active');
+    self.active = function(isMe){
+      if (isMe===self.uuid){
+        return 'active';
+      }
+      return '';
     };
 
     self.addOption = function(){
@@ -129,11 +137,11 @@ $(document).ready(function() {
     };
     self.addElement = function(){
       var element = new Text('Frage');
-      self.add(element,'active');
+      self.add(element);
     };
     // todo obsolete?? and rename addElement to add??
-    self.add = function(element,active){
-      self.elements.push(new PageElement(element,active));
+    self.add = function(element){
+      self.elements.push(new PageElement(element));
     };
     self.remove = function(index){
       self.elements.splice(index,1);
@@ -146,6 +154,11 @@ $(document).ready(function() {
     self.pages = ko.observableArray();
     self.pages.push(new Page());
     self.formTitle = new PageElement(new Title('Form Title'));
+
+    self.select = function(element){
+      self.isSelected(element.uuid);
+    };
+    self.isSelected = ko.observable();
 
     self.canSave =  ko.observable(true);
     self.jsonForm = ko.observable().extend({ cookie: 'jsonForm' });
