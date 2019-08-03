@@ -1,0 +1,37 @@
+{
+	"form": {
+		"id":"HASH",
+		"name":"NAME OF FORM",
+		"author": "AUTHOR",
+		"status": {
+			"public":"BOOL",
+			"active":"BOOL",
+			"expiry":"DATE OR NULL"
+		},
+		"answer": {
+			"CONFIG":"WHATEVER",
+			"tracking":"BOOL"
+		},
+		"question": {
+			"theme":"THEME ENUMS/OBJECT tbd",
+			"WHATEVER":"WHATEVER",
+			"content": [
+				{
+					"label":"STRING",
+					"type":"ENUM",
+					"placeholder":"STRING NULLABLE",
+					"validation": {},
+					"helptext":"STRING NULLABLE",
+					"value": {},
+					"required":"BOOL",
+					"hidden":"BOOL tbd",
+					"inputmask":"tbd",
+					"style": {},
+					"readonly":"BOOL",
+					"disabled":"BOOL",
+					"privacy": {}
+				}
+			]
+		}
+	}
+}
