@@ -1,7 +1,7 @@
 ## APP
 vendor/
 forms/
-api/definitions/
+app/api/definitions/
 app/langcache/
 
 ## Node.js

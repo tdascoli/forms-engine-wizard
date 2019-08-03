@@ -1,9 +1,9 @@
 <?php
 session_start();
 // Config
-$_SESSION['configFile'] = __DIR__ . '/../app/config.json';
+$_SESSION['configFile'] = __DIR__ . '/../config.json';
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

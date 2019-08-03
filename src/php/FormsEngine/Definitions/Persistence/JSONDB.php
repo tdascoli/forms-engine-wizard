@@ -10,7 +10,14 @@ class JSONDB implements Persistence {
     $store = self::prepare();
     $data['formId'] = $formId;
     $data['form']   = $form;
-    $id = $store->insert($data);
+
+    $form = $store->where('formId','=',$formId)->fetch();
+    if (\count($form)>0){
+      $store->where('formId','=',$formId)->update($data);
+    }
+    else {
+      $id = $store->insert($data);
+    }
   }
 
   public static function load($formId){
