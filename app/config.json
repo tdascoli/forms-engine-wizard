@@ -6,7 +6,7 @@
     "templateDir": "/Templates/",
     "langDir": "/Translations/",
     "form": {
-        "dir": "/docs/forms/",
+        "dir": "/forms/",
         "name": "defaultForm",
         "method": "ajax",
         "messageAfterSubmit": true,

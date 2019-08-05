@@ -1,6 +1,6 @@
 ## APP
 vendor/
-forms/
+app/forms/
 app/api/definitions/
 app/langcache/
 
