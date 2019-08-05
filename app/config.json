@@ -21,7 +21,7 @@
         "load": "API",
         "config": {
           "get":"form",
-          "url":"http://localhost:8001/api/forms/"
+          "url":"http://nextforms.herokuapp.com/app/api/forms/"
         }
     },
     "persistence": {
