@@ -46,7 +46,7 @@ class Definitions {
 
     $data = $this->collect($formId, $type);
 
-    if (!empty($data) && $data != '[]'){
+    if (!empty($data)){
       $newResponse = $response->withJson(json_decode($data));
     }
     else {
