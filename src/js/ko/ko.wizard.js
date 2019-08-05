@@ -196,7 +196,8 @@ $(document).ready(function() {
     self.save = function(){
       // todo name!!
       var name = 'defaultForm';
-      var url = '/api/forms/'+name;
+      var url = document.URL+'/api/forms/'+name;
+      console.log(url);
       var json = self.formDefinition();
 
       $.ajax({

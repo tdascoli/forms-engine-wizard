@@ -65,7 +65,7 @@ $form = $engine->renderer();
 <!-- content -->
 <div class="container">
     <?php
-      $form->load();
+      //$form->load();
     ?>
 </div>
 

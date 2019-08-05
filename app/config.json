@@ -18,8 +18,11 @@
         "reset": false
     },
     "render": {
-        "load": "COOKIE",
-        "config": "jsonForm"
+        "load": "API",
+        "config": {
+          "get":"form",
+          "url":"http://localhost:8001/api/forms/"
+        }
     },
     "persistence": {
         "type": "JSONDB",
