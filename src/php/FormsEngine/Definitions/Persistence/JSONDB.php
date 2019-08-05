@@ -24,7 +24,8 @@ class JSONDB implements Persistence {
     $name = \getenv('PERSISTENCE_NAME');
     $store = self::prepare();
     $data = $store->where('formId','=',$formId)->fetch();
-    return \json_encode($data, JSON_PRETTY_PRINT);
+    // TODO: what about more than one result??
+    return \json_encode($data[0]['form'], JSON_PRETTY_PRINT);
   }
 
   private static function prepare(){
