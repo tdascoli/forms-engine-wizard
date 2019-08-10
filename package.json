@@ -32,6 +32,7 @@
     "jshint": "^2.8.0"
   },
   "dependencies": {
+    "exceljs": "^1.14.0",
     "forms-engine.js": "0.1.1"
   }
 }

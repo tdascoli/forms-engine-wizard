@@ -100,8 +100,8 @@ gulp.task('copy:dependencies', () => {
   var dependencies = Object.keys(package.dependencies);
   var path = Array();
   dependencies.forEach(function(dependency){
-    path.push('./node_modules/'+dependency+'/dist/**/*.js');
-    path.push('./node_modules/'+dependency+'/dist/**/*.css');
+    path.push('./node_modules/'+dependency+'/dist/*.js');
+    path.push('./node_modules/'+dependency+'/dist/*.css');
   });
   return gulp.src(path,  {base: './node_modules/'})
           .pipe(gulp.dest('./app/assets/components/'));
