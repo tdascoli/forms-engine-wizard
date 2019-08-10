@@ -1,0 +1,12 @@
+<table class="table table-sm table-striped">
+  <thead>
+    <tr data-bind="foreach: answers.keys()">
+      <th scope="col" data-bind="text : $data"></th>
+    </tr>
+  </thead>
+  <tbody data-bind="foreach: answers.answers">
+   <tr data-bind="foreach: Object.keys($data)"> <!-- JSON Object -->
+     <td data-bind="text: $parent[$data]"></td>
+   </tr>
+ </tbody>
+</table>

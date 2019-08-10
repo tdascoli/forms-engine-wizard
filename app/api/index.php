@@ -36,6 +36,7 @@ $app->get('/forms/{formId}', Definitions::class . ':load');
 // FormsEngine
 $app->put('/record/{formId}', ServerCompleteHandler::class . ':save');
 
+// TODO: naming
 $app->get('/record/{formId}[/{type}]', Collection::class . ':load');
 
 $app->run();

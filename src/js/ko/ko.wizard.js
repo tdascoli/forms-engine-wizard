@@ -146,6 +146,22 @@ $(document).ready(function() {
     };
   };
 
+  var Answers = function(name){
+    var self = this;
+
+    self.formName=name;
+    self.keys = ko.observableArray([]);
+    self.answers = ko.observableArray([]);
+    self.count = ko.pureComputed(function(){
+        return self.answers().length;
+    });
+
+    $.getJSON('/api/record/'+self.formName, function(data) {
+        self.answers(data);
+        self.keys(Object.keys(data[0]));
+    });
+  };
+
   var FormsEngineWizard = function() {
     var self = this;
 
@@ -180,6 +196,8 @@ $(document).ready(function() {
         self.subtypes.push(value);
     });
 
+    self.answers = new Answers('defaultForm');
+
     self.formDefinition = function(){
       var json={'formTitle':self.formTitle.element, 'pages':new Array()};
       var pageIndex=0;
@@ -200,6 +218,7 @@ $(document).ready(function() {
       console.log(url);
       var json = self.formDefinition();
 
+      // TODO: fetch API
       $.ajax({
           contentType: 'application/json',
           data: json,
@@ -216,9 +235,11 @@ $(document).ready(function() {
     };
 
     self.generate = function(){
+      // todo name!!
+      var name = 'defaultForm';
       self.jsonForm(self.formDefinition());
       // open new window
-      window.open('form.php', '_blank');
+      window.open('form.php?form='+name, '_blank');
     };
   };
 
