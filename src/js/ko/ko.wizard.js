@@ -160,6 +160,45 @@ $(document).ready(function() {
         self.answers(data);
         self.keys(Object.keys(data[0]));
     });
+
+    self.export = function(type){
+      var workbook = new ExcelJS.Workbook();
+      var worksheet = workbook.addWorksheet(self.formName);
+      // keys
+      worksheet.addRow(self.keys())
+      // values
+      _.forEach(self.answers(), function(row){
+        worksheet.addRow(_.values(row));
+      });
+
+      switch (type){
+        case 'CSV':
+              self.asCSV(workbook);
+              break;
+        default:
+              self.asXLSX(workbook);
+      };
+    };
+
+    self.asCSV = function(workbook){
+      var filename = self.formName+'.csv';
+      var mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+      workbook.csv.writeBuffer()
+        .then(function(data) {
+          var blob = new Blob([data], { type : mimeType });
+          saveAs(blob, filename);
+        });
+    };
+
+    self.asXLSX = function(workbook){
+      var filename = self.formName+'.xlsx';
+      var mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+      workbook.xlsx.writeBuffer()
+        .then(function(data) {
+          var blob = new Blob([data], { type : mimeType });
+          saveAs(blob, filename);
+        });
+    };
   };
 
   var FormsEngineWizard = function() {
