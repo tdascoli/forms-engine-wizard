@@ -65,7 +65,9 @@
       <a class="nav-link" href="#" data-bind="click: generate"><i class="material-icons">computer</i></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><i class="material-icons">settings</i></a>
+      <button type="button" class="btn btn-float btn-menu nav-link" data-toggle="modal" data-target="#settingsModal">
+        <i class="material-icons">settings</i>
+      </button>
     </li>
     <li class="nav-item">
       <button data-bind="enable: canSave, click: save" class="btn btn-light" type="button">Speichern</button>
@@ -141,5 +143,33 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="settingsModalLabel">Settings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+        <pre>
+          - form name
+          - export type (?)
+          - persistence type (?)
+          - what else?
+        </pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
