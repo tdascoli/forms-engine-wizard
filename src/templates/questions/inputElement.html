@@ -43,7 +43,19 @@
         </select>
       </div>
 
-      <!-- todo other settings like min, max etc -->
+      <!-- other settings like min, max etc -->
+      <!--
+      <div class="ml-3 form-group">
+        <label data-bind="attr: { for: idValue('min',$parentContext.$index(),$index()) }">Min. Zeichenanzahl</label>
+        <input data-bind="value: element.attributes.min, attr: { id: idValue('min',$parentContext.$index(),$index()) }" class="form-control ml-3" placeholder="Min. Zeichenanzahl" type="number" />
+      </div>
+      -->
+
+      <div class="ml-3 form-group">
+        <label data-bind="attr: { for: idValue('max',$parentContext.$index(),$index()) }">Max. Zeichenanzahl</label>
+        <input data-bind="value: element.attributes.max, attr: { id: idValue('max',$parentContext.$index(),$index()) }" class="form-control ml-3" placeholder="Zahl" type="number" />
+      </div>
+
     </div>
 
     <hr>
