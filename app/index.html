@@ -148,20 +148,92 @@
 <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-primary text-white">
         <h5 class="modal-title" id="settingsModalLabel">Settings</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
+      <ul class="nav nav-tabs" id="settingsModalTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Form</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="tech-tab" data-toggle="tab" href="#tech" role="tab" aria-controls="tech" aria-selected="false">Other</a>
+        </li>
+      </ul>
+
       <div class="modal-body">
-        ...
-        <pre>
-          - form name
-          - export type (?)
-          - persistence type (?)
-          - what else?
-        </pre>
+
+        <div class="tab-content" id="settingsModalTabContent">
+          <!-- FORM -->
+          <div class="tab-pane fade show active" id="form" role="tabpanel" aria-labelledby="form-tab">
+            <div class="form-group">
+              <label for="formName">Form name</label>
+              <input id="formName" class="form-control" placeholder="Name of the form." type="text" />
+            </div>
+
+            <div class="custom-control custom-checkbox mt-3">
+              <input type="checkbox" class="custom-control-input" id="createAnother">
+              <label class="custom-control-label" for="createAnother">Show "Create Another Entry" after submit</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="messageAfterSubmit">
+              <label class="custom-control-label" for="messageAfterSubmit">Show a message after submit</label>
+            </div>
+            <!-- todo: when true input for text? -->
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="addTimestamp">
+              <label class="custom-control-label" for="addTimestamp">Add a timestamp for every entry</label>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="method">Submit method</label>
+              <select class="custom-select" id="method">
+                <option>AJAX</option>
+                <option>POST</option>
+              </select>
+            </div>
+
+            <div class="custom-control custom-checkbox mt-3">
+              <input type="checkbox" class="custom-control-input" id="paginationActive">
+              <label class="custom-control-label" for="paginationActive">Show pagination</label>
+            </div>
+            <!-- todo: only enabled when pagination true -->
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="paginationReset">
+              <label class="custom-control-label" for="paginationReset">Show a reset button in pagination</label>
+            </div>
+
+          </div>
+
+          <!-- Tech. Behaviour -->
+          <div class="tab-pane fade" id="tech" role="tabpanel" aria-labelledby="tech-tab">
+            <div class="d-flex justify-content-between">
+              <div class="form-group flex-fill mr-3">
+                <label for="persistenceType">Persistence</label>
+                <select class="custom-select" id="persistenceType">
+                  <option>- please choose -</option>
+                </select>
+              </div>
+
+              <div class="form-group flex-fill ml-3">
+                <label for="exportType">Export as</label>
+                <select class="custom-select" id="exportType">
+                  <option>- please choose -</option>
+                </select>
+              </div>
+            </div>
+
+            <pre>
+
+              - persistence: email -> emailTo, ??, externalConfigs?
+              - render: load, config
+            </pre>
+
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
