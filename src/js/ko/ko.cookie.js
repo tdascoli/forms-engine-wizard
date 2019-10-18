@@ -23,7 +23,7 @@
     target(Cookies.set(cookie_name));
 
 
-    //Allow external updates on the 'persist' observable to affect the cookie immediately
+  //Allow external updates on the 'persist' observable to affect the cookie immediately
 	//This is useful when you want to set options.persist to
 	//	an observable (like a 'remember this setting' checkbox)
 	//Checking and unchecking the checkbox will immediately set and clear

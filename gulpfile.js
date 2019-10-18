@@ -26,12 +26,6 @@ var banner = [
   '\n'
 ].join('');
 
-// BrowserSync Reload
-function reload(done) {
-  browserSync.reload();
-  done();
-}
-
 gulp.task('css', () => {
     return gulp.src('src/scss/style.scss')
             .pipe(sass({errLogToConsole: true}))
